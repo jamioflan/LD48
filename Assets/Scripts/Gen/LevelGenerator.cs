@@ -13,10 +13,9 @@ public class LevelGenerator : MonoBehaviour
 	public Transform floor = null;
 
 	private const int WALL_TYPE_EMPTY = 0;
-	private const int WALL_TYPE_WALL = 1;
+	private const int WALL_TYPE_ROCK = 1;
 	private const int WALL_TYPE_BEDROCK = 2;
-
-
+	private const int WALL_TYPE_WALL = 3;
 
 	void Start()
     {
@@ -36,6 +35,7 @@ public class LevelGenerator : MonoBehaviour
 		currentLevel = level;
 		int[,] wallTypes = new int[levelSize, levelSize];
 
+		// Start with cave carving
 		for (int i = 0; i < levelSize; i++)
 		{
 			for (int k = 0; k < levelSize; k++)
@@ -44,12 +44,17 @@ public class LevelGenerator : MonoBehaviour
 				int dZ = k - levelSize / 2;
 
 				float radius = Mathf.Sqrt(dX * dX + dZ * dZ) / levelSize + Mathf.PerlinNoise(i * 0.0913f, k * 0.07498f);
-				if(radius > 0.75f)
+				if(radius > assets.caveness)
 				{
-					wallTypes[i, k] = WALL_TYPE_WALL;
+					wallTypes[i, k] = WALL_TYPE_ROCK;
 				}
 			}
 		}
+
+		// Then build the route
+		int x = levelSize / 2;
+		int z = levelSize / 2;
+		BuildRoom(x, z, wallTypes, assets.roomBudget, assets.hallwayLength);
 
 		// Place boundaries
 		for (int i = 0; i < levelSize; i++)
@@ -58,6 +63,14 @@ public class LevelGenerator : MonoBehaviour
 			wallTypes[i, levelSize - 1] = WALL_TYPE_BEDROCK;
 			wallTypes[0, i] = WALL_TYPE_BEDROCK;
 			wallTypes[levelSize - 1, i] = WALL_TYPE_BEDROCK;
+
+			if(Random.Range(0f,1f) > 0.5f)
+			{
+				wallTypes[i, 1] = WALL_TYPE_BEDROCK;
+				wallTypes[levelSize - 1 - i, levelSize - 2] = WALL_TYPE_BEDROCK;
+				wallTypes[1, levelSize - 1 - i] = WALL_TYPE_BEDROCK;
+				wallTypes[levelSize - 2, i] = WALL_TYPE_BEDROCK;
+			}
 		}
 
 		walls = new Transform[levelSize, levelSize];
@@ -67,10 +80,19 @@ public class LevelGenerator : MonoBehaviour
 			{
 				switch(wallTypes[i,k])
 				{
+					case WALL_TYPE_ROCK:
+					{
+						walls[i, k] = Instantiate(assets.rockPrefab, new Vector3(i, 0, k), Quaternion.identity, transform);
+						break;
+					}
 					case WALL_TYPE_WALL:
-					case WALL_TYPE_BEDROCK:
 					{
 						walls[i, k] = Instantiate(assets.wallPrefab, new Vector3(i, 0, k), Quaternion.identity, transform);
+						break;
+					}
+					case WALL_TYPE_BEDROCK:
+					{
+						walls[i, k] = Instantiate(assets.bedrockPrefab, new Vector3(i, 0, k), Quaternion.identity, transform);
 						break;
 					}
 				}
@@ -78,6 +100,81 @@ public class LevelGenerator : MonoBehaviour
 		}
 
 		floor = Instantiate(assets.floorPrefab, transform);
+	}
+
+	private void PlaceRoom(int x, int z, int width, int height, int[,] map)
+	{
+		for (int i = x - width / 2; i < x + width / 2; i++)
+		{
+			for (int k = z - height / 2; k < z + height / 2; k++)
+			{
+				if (i >= 0 && i < levelSize && k >= 0 && k < levelSize)
+				{
+					// Wall
+					if (i == x - width / 2 || i == x + width / 2 - 1
+					|| k == z - height / 2 || k == z + height / 2 - 1)
+					{
+						if (map[i, k] == WALL_TYPE_ROCK)
+							map[i, k] = WALL_TYPE_WALL;
+					}
+					else
+					{
+						// Carved
+						map[i, k] = WALL_TYPE_EMPTY;
+					}
+				}
+
+			}
+		}
+	}
+
+	private void BuildRoom(int x, int z, int[,] map, int budgetLeft, float hallwayLength)
+	{
+		int width = Random.Range(9, 15);
+		int height = Random.Range(9, 17);
+
+		PlaceRoom(x, z, width, height, map);
+
+		budgetLeft--;
+
+		if (budgetLeft > 0)
+		{
+			int numBranches = Random.Range(1, Mathf.Min(2, budgetLeft) + 1);
+			int budgetEach = budgetLeft / numBranches;
+
+			for (int i = 0; i < numBranches; i++)
+			{
+				int newX = x;
+				int newZ = z;
+				bool solutionFound = false;
+				while (!solutionFound)
+				{
+					newX = x;
+					newZ = z;
+					int dir = Random.Range(0, 4);
+					switch (dir)
+					{
+						case 0:
+							newX += (int)(width * hallwayLength);
+							break;
+						case 1:
+							newZ += (int)(height * hallwayLength);
+							break;
+						case 2:
+							newX -= (int)(width * hallwayLength);
+							break;
+						case 3:
+							newZ -= (int)(height * hallwayLength);
+							break;
+					}
+					if (newX > 0 && newX < levelSize && newZ > 0 && newZ < levelSize)
+						solutionFound = true;
+				}
+
+				PlaceRoom((newX + x) / 2, (newZ + z) / 2, Mathf.Abs(newX - x) + 4, Mathf.Abs(newZ - z) + 4, map);
+				BuildRoom(newX, newZ, map, budgetEach, hallwayLength);
+			}
+		}
 	}
 
 	public void DeleteLevel()
