@@ -10,6 +10,7 @@ public class LevelGenerator : MonoBehaviour
 	// Currently generated level
 	public int currentLevel = 0;
 	public Transform[,] walls = null;
+	public Transform floor = null;
 
 	private const int WALL_TYPE_EMPTY = 0;
 	private const int WALL_TYPE_WALL = 1;
@@ -75,6 +76,8 @@ public class LevelGenerator : MonoBehaviour
 				}
 			}
 		}
+
+		floor = Instantiate(assets.floorPrefab, transform);
 	}
 
 	public void DeleteLevel()
@@ -86,5 +89,8 @@ public class LevelGenerator : MonoBehaviour
 				Destroy(t.gameObject);
 		}
 		walls = null;
+
+		if (floor != null)
+			Destroy(floor.gameObject);
 	}
 }
