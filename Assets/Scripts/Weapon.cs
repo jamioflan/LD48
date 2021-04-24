@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public abstract class Weapon : MonoBehaviour
 {
-	public DamageElement dElement = DamageElement.Physical;
-	public bool isCrushingWeapon = false;
 	public float damageModifier = 1.0f;
+	public DamageElement dElement = DamageElement.Physical;
 
-    // Start is called before the first frame update
-    void Start()
+	public abstract bool isCrushingWeapon();
+	public abstract float cooldownModifier();
+	public abstract float sweepAttackRangeModifier();
+	public abstract float jabAttackRangeModifier();
+
+	// Start is called before the first frame update
+	void Start()
     {
         
     }
