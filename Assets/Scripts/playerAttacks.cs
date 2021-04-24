@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerAttacks : MonoBehaviour
 {
-	
-	public Weapon playerWeapon = null;
 
 	float baseAttackCooldown = 2.0f;
 	float baseSweepAttackRange = 2.5f;
@@ -15,30 +13,33 @@ public class PlayerAttacks : MonoBehaviour
 	float jabAttackRadius = 1.5f;
 	float attackCountDown = 0.0f;
 	PlayerMovement movement = null;
+	PlayerInventory inventory = null;
 
 	// Start is called before the first frame update
 	void Start()
     {
 		movement = GetComponent<PlayerMovement>();
-    }
+		inventory = GetComponent<PlayerInventory>();
+	}
 
 	// Update is called once per frame
 	void Update()
     {
-		playerWeapon = GetComponent<PlayerInventory>().GetWeaponInSlot(0);
+		Weapon weapon = inventory.GetWeaponInSlot(0);
 
-		if (attackCountDown <= 0.1f) {
+		if (attackCountDown <= 0.0f)
+		{
 
 			if (Input.GetMouseButton(0))
 			{
-				JabAttack(playerWeapon);
-				attackCountDown = baseAttackCooldown;
+				JabAttack(weapon);
+				attackCountDown = baseAttackCooldown * weapon.cooldownModifier();
 			}
 
 			if (Input.GetMouseButton(1))
 			{
-				SweepAttack(playerWeapon);
-				attackCountDown = baseAttackCooldown;
+				SweepAttack(weapon);
+				attackCountDown = baseAttackCooldown * weapon.cooldownModifier();
 			}
 		}
 
@@ -47,7 +48,7 @@ public class PlayerAttacks : MonoBehaviour
 
 	void JabAttack(Weapon weapon)
 	{
-		Collider[] hitColliders = Physics.OverlapCapsule(transform.position, transform.position + (movement.targetDirection * baseJabAttackRange), jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
+		Collider[] hitColliders = Physics.OverlapCapsule(transform.position, transform.position + (movement.targetDirection * baseJabAttackRange * weapon.jabAttackRangeModifier()), jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
 
 		foreach (Collider victim in hitColliders)
 		{
@@ -60,17 +61,17 @@ public class PlayerAttacks : MonoBehaviour
 			else
 			{
 				Debug.Log("You stabbed " + victim.name);
-				if(playerWeapon.isCrushingWeapon())
-					enemy.SufferDamage(baseJabAttackDamage * playerWeapon.damageModifier, DamageType.Crushing, playerWeapon.dElement);
+				if(weapon.isCrushingWeapon())
+					enemy.SufferDamage(baseJabAttackDamage * weapon.damageModifier, DamageType.Crushing, weapon.dElement);
 				else
-					enemy.SufferDamage(baseJabAttackDamage * playerWeapon.damageModifier, DamageType.Piercing, playerWeapon.dElement);
+					enemy.SufferDamage(baseJabAttackDamage * weapon.damageModifier, DamageType.Piercing, weapon.dElement);
 			}
 		}
 	}
 
 	void SweepAttack(Weapon weapon)
 	{
-		Collider[] hitColliders = Physics.OverlapSphere(transform.position, baseSweepAttackRange, 1 << LayerMask.NameToLayer("Enemy"));
+		Collider[] hitColliders = Physics.OverlapSphere(transform.position, baseSweepAttackRange * weapon.sweepAttackRangeModifier(), 1 << LayerMask.NameToLayer("Enemy"));
 
 		foreach (Collider victim in hitColliders)
 		{
@@ -83,10 +84,10 @@ public class PlayerAttacks : MonoBehaviour
 			else
 			{
 				Debug.Log("You slashed " + victim.name);
-				if (playerWeapon.isCrushingWeapon())
-					enemy.SufferDamage(baseSweepAttackDamage * playerWeapon.damageModifier, DamageType.Crushing, playerWeapon.dElement);
+				if (weapon.isCrushingWeapon())
+					enemy.SufferDamage(baseSweepAttackDamage * weapon.damageModifier, DamageType.Crushing, weapon.dElement);
 				else
-					enemy.SufferDamage(baseSweepAttackDamage * playerWeapon.damageModifier, DamageType.Slashing, playerWeapon.dElement);
+					enemy.SufferDamage(baseSweepAttackDamage * weapon.damageModifier, DamageType.Slashing, weapon.dElement);
 			}
 		}
 	}
