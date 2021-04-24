@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/LevelAssets", order = 1)]
 public class LevelAssets : ScriptableObject
 {
+	public string displayName;
+
 	public Transform wallPrefab, bedrockPrefab, rockPrefab;
 	public Transform floorPrefab;
 	public float caveness = 0.5f;

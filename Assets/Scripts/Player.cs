@@ -8,12 +8,14 @@ public class Player : MonoBehaviour
 
 	public PlayerMovement movement;
 	public PlayerAttacks attacks;
+	public PlayerInventory inventory;
 
     void Awake()
     {
 		inst = this;
 		movement = GetComponent<PlayerMovement>();
 		attacks = GetComponent<PlayerAttacks>();
+		inventory = GetComponent<PlayerInventory>();
     }
 
     void Update()

@@ -152,6 +152,9 @@ public class LevelGenerator : MonoBehaviour
 
 			Spawn(assets.regularSpawns[index], wallTypes, spawnPoint);
 		}
+
+		UI.inst.Announce($"Level {level + 1} - {assets.displayName}");
+		UI.inst.SetLevelNameText($"Level {level + 1} - {assets.displayName}");
 	}
 
 	private void Spawn(LevelAssets.SpawnData spawn, int[,] map, Vector2Int playerSpawnPos)

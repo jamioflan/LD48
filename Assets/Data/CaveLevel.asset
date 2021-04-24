@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ca245a79de7ae46b2234c5e9b0c456, type: 3}
   m_Name: CaveLevel
   m_EditorClassIdentifier: 
+  displayName: Crumbling Sewer
   wallPrefab: {fileID: 6462806315288307877, guid: 8d958074d3ea2d745a8ac01d67893d71,
     type: 3}
   bedrockPrefab: {fileID: 6462806315288307877, guid: 17fc6ef483b9c2547addf5b1f9a4a516,
@@ -23,3 +24,11 @@ MonoBehaviour:
   caveness: 0.6
   roomBudget: 32
   hallwayLength: 1.5
+  regularSpawns: []
+  numToSpawn: 8
+  spawnBoss: 0
+  bossData:
+    prefab: {fileID: 0}
+    spawnWeight: 1
+    minNumPerGroup: 1
+    maxNumPerGroup: 3
