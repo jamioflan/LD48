@@ -224,34 +224,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 503563347, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 503563347, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 503563347, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9568375
-      objectReference: {fileID: 0}
-    - target: {fileID: 503563347, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.29062372
-      objectReference: {fileID: 0}
-    - target: {fileID: 503563347, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 503563347, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 503563347, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 33.791
-      objectReference: {fileID: 0}
     - target: {fileID: 790672861, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
       propertyPath: players.Array.data[0]
       value: 

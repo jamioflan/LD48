@@ -129,5 +129,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   players:
   - {fileID: 0}
-  autoFindPlayers: 0
-  lerpSpeed: 0.1
+  lerpSpeed: 10

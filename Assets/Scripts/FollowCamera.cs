@@ -5,14 +5,14 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
 	public List<Transform> players = new List<Transform>();
-	public bool autoFindPlayers = false;
-	public float lerpSpeed = 0.1f;
+	public float lerpSpeed = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
+		players.Add(Player.inst.transform);
+
+	}
 
     // Update is called once per frame
     void Update()
