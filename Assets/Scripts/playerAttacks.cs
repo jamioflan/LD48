@@ -2,20 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerAttacks : MonoBehaviour
+public class PlayerAttacks : MonoBehaviour
 {
 	public float attackCooldown = 50.0f;
 	public float sweepAttackRange = 5.0f;
+	public float sweepAttackDamage = 1.0f;
 	public float jabAttackRange = 10.0f;
 	public float jabAttackRadius = 1.0f;
+	public float jabAttackDamage = 1.0f;
 
 	float attackCountDown = 0.0f;
-	playerMovement movement = null;
+	PlayerMovement movement = null;
 
 	// Start is called before the first frame update
 	void Start()
     {
-		movement = GetComponent<playerMovement>();
+		movement = GetComponent<PlayerMovement>();
     }
 
 	// Update is called once per frame
