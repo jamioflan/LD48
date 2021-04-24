@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 524248365}
   - component: {fileID: 524248364}
   - component: {fileID: 524248363}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -637,8 +637,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50303c4a5504f0e49b80a2d0e782e366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sweepAttackRange: 5
   attackCooldown: 5
+  sweepAttackRange: 5
+  jabAttackRange: 10
+  jabAttackRadius: 1
 --- !u!1001 &1467933337
 PrefabInstance:
   m_ObjectHideFlags: 0
