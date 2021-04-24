@@ -116,8 +116,18 @@ public class LevelGenerator : MonoBehaviour
 					spawnPoint = gridPos;
 			}
 
-			radius -= 2.0f;
+			radius -= 1.0f;
 		}
+
+		if (spawnPoint == Vector2Int.zero)
+		{
+			Debug.LogError("Failed to find spawn point");
+			spawnPoint = new Vector2Int(levelSize / 2, levelSize / 2);
+		}
+
+		Player.inst.transform.position = new Vector3(spawnPoint.x, 0.0f, spawnPoint.y);
+		Camera.main.transform.parent.position = Player.inst.transform.position;
+
 
 		// Place enemies
 		float totalWeight = 0.0f;
