@@ -5,6 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 	public float health = 10.0f;
+	public int treasure = 1;
 	public Foible earthF = Foible.Regular;
 	public Foible airF = Foible.Regular;
 	public Foible fireF = Foible.Regular;
