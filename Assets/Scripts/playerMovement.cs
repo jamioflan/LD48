@@ -32,12 +32,12 @@ public class PlayerMovement : MonoBehaviour
 		// Movement
 		Vector3 motionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
-		motionVector = motionVector * moveSpeed * 10;
+		motionVector *= (moveSpeed * 10);
 
 		if (Input.GetKey(KeyCode.LeftShift))
-			motionVector = motionVector * sprintModifier;
+			motionVector *= sprintModifier;
 
-		motionVector = motionVector * Time.deltaTime;
+		motionVector *= Time.deltaTime;
 
 		controller.Move(motionVector);
     }

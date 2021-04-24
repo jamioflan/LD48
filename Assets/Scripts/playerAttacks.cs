@@ -10,6 +10,7 @@ public class PlayerAttacks : MonoBehaviour
 	public float jabAttackRange = 10.0f;
 	public float jabAttackRadius = 1.0f;
 	public float jabAttackDamage = 1.0f;
+	public Weapon playerWeapon = null;
 
 	float attackCountDown = 0.0f;
 	PlayerMovement movement = null;
@@ -42,23 +43,49 @@ public class PlayerAttacks : MonoBehaviour
 		attackCountDown = Mathf.Max(attackCountDown - Time.deltaTime, 0.0f);
 	}
 
+	void JabAttack()
+	{
+		Collider[] hitColliders = Physics.OverlapCapsule(transform.position, transform.position + (movement.targetDirection * jabAttackRange), jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
+
+		foreach (Collider victim in hitColliders)
+		{
+			Enemy enemy = victim.GetComponent<Enemy>();
+
+			if (enemy is null)
+			{
+				Debug.Log("You failed to stab " + victim.name);
+			}
+			else
+			{
+				Debug.Log("You stabbed " + victim.name);
+				if(playerWeapon.isCrushingWeapon)
+					enemy.SufferDamage(jabAttackDamage * playerWeapon.damageModifier, DamageType.Crushing, playerWeapon.dElement);
+				else
+					enemy.SufferDamage(jabAttackDamage * playerWeapon.damageModifier, DamageType.Piercing, playerWeapon.dElement);
+			}
+		}
+	}
+
 	void SweepAttack()
 	{
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, sweepAttackRange, 1 << LayerMask.NameToLayer("Enemy"));
 
 		foreach (Collider victim in hitColliders)
 		{
-			Debug.Log("You slashed " + victim.name);
-		}
-	}
+			Enemy enemy = victim.GetComponent<Enemy>();
 
-	void JabAttack()
-	{
-		Collider[] hitColliders = Physics.OverlapCapsule(transform.position, transform.position + (movement.targetDirection * jabAttackRange),jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
-
-		foreach (Collider victim in hitColliders)
-		{
-			Debug.Log("You stabbed " + victim.name);
+			if (enemy is null)
+			{
+				Debug.Log("You failed to slash " + victim.name);
+			}
+			else
+			{
+				Debug.Log("You slashed " + victim.name);
+				if (playerWeapon.isCrushingWeapon)
+					enemy.SufferDamage(sweepAttackDamage * playerWeapon.damageModifier, DamageType.Crushing, playerWeapon.dElement);
+				else
+					enemy.SufferDamage(sweepAttackDamage * playerWeapon.damageModifier, DamageType.Slashing, playerWeapon.dElement);
+			}
 		}
 	}
 }
