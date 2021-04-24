@@ -453,18 +453,6 @@ MonoBehaviour:
   numArmourSlots: 1
   numMagicSlots: 2
   defaultWeapon: {fileID: 0}
---- !u!114 &2048726897 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6556330364595155235, guid: 60fb947271a042940bd2c0c9c318888b,
-    type: 3}
-  m_PrefabInstance: {fileID: 8675652628478597475}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &8294492000104374717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -541,11 +529,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1550207046517774294, guid: 60fb947271a042940bd2c0c9c318888b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2601309335182381067, guid: 60fb947271a042940bd2c0c9c318888b,
         type: 3}
       propertyPath: m_Name
@@ -656,10 +639,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8675652628478597478, guid: 60fb947271a042940bd2c0c9c318888b,
-        type: 3}
-      propertyPath: levelNameText
-      value: 
-      objectReference: {fileID: 2048726897}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60fb947271a042940bd2c0c9c318888b, type: 3}

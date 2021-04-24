@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4369254071752933001
 RectTransform:
   m_ObjectHideFlags: 0
@@ -160,6 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1224d3a18f51f654ea2b0c756475cc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelNameText: {fileID: 6556330364595155235}
+  magicSlots: []
   announcer: {fileID: 4369254071752933001}
   announcerText: {fileID: 7353939622273434843}
   announcerTimeLeft: 0
