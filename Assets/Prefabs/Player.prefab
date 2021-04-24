@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 8433421669111714256}
   - component: {fileID: 988219487}
   - component: {fileID: 3509571197435498458}
+  - component: {fileID: 1711796561077533315}
+  - component: {fileID: 7513007265209028151}
+  - component: {fileID: 5675617294367865442}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -65,6 +68,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 0}
   attacks: {fileID: 0}
+  inventory: {fileID: 0}
+--- !u!114 &1711796561077533315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223909526510828406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50303c4a5504f0e49b80a2d0e782e366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWeapon: {fileID: 0}
+--- !u!114 &7513007265209028151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223909526510828406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705cb2cd7725cd44ca960f01b39a850c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  sprintModifier: 1.5
+  targetPosition: {x: 0, y: 0, z: 0}
+  mouseCursor: {fileID: 0}
+--- !u!114 &5675617294367865442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7223909526510828406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5de722b0dd76da24285908b740984c12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numWeaponSlots: 2
+  numArmourSlots: 1
+  numMagicSlots: 2
+  defaultWeapon: {fileID: 0}
 --- !u!1001 &8903159649934735265
 PrefabInstance:
   m_ObjectHideFlags: 0

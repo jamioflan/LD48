@@ -25,18 +25,19 @@ public class PlayerAttacks : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
+		playerWeapon = GetComponent<PlayerInventory>().GetWeaponInSlot(0);
 
 		if (attackCountDown <= 0.1f) {
 
 			if (Input.GetMouseButton(0))
 			{
-				JabAttack();
+				JabAttack(playerWeapon);
 				attackCountDown = baseAttackCooldown;
 			}
 
 			if (Input.GetMouseButton(1))
 			{
-				SweepAttack();
+				SweepAttack(playerWeapon);
 				attackCountDown = baseAttackCooldown;
 			}
 		}
@@ -44,7 +45,7 @@ public class PlayerAttacks : MonoBehaviour
 		attackCountDown = Mathf.Max(attackCountDown - Time.deltaTime, 0.0f);
 	}
 
-	void JabAttack()
+	void JabAttack(Weapon weapon)
 	{
 		Collider[] hitColliders = Physics.OverlapCapsule(transform.position, transform.position + (movement.targetDirection * baseJabAttackRange), jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
 
@@ -67,7 +68,7 @@ public class PlayerAttacks : MonoBehaviour
 		}
 	}
 
-	void SweepAttack()
+	void SweepAttack(Weapon weapon)
 	{
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, baseSweepAttackRange, 1 << LayerMask.NameToLayer("Enemy"));
 

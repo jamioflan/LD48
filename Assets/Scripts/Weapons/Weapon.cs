@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : InventoryItem
+public abstract class Weapon : InventoryItem
 {
 	public DamageElement dElement = DamageElement.Physical;
+	public float damageModifier = 1.0f;
 
 	public abstract bool isCrushingWeapon();
 	public abstract float cooldownModifier();
