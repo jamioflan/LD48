@@ -113,7 +113,6 @@ public abstract class Creature : MonoBehaviour
 					return Foible.Resistant.DamageMultiplier();
 				else
 					return physicalF.DamageMultiplier();
-				return physicalF.DamageMultiplier();
 			case DamageElement.Spirit:
 				return spiritF.DamageMultiplier();
 		}
