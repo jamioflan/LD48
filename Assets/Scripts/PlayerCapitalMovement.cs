@@ -5,10 +5,16 @@ using UnityEngine;
 public class PlayerCapitalMovement : MonoBehaviour
 {
 	public float moveSpeed = 1.0f;
-	public float sprintModifier = 1.5f;
+	public float dashModifier = 10f;
+	public float dashDuration = 0.2f;
 	public Vector3 targetPosition = Vector3.zero;
 	public Transform mouseCursor = null;
 
+	/*
+	private bool isSprinting = false;
+	private float sprintCooldown = 0.0f;
+	private float sprintCoolTime = 1.0f;
+	*/
 	private CreatureAnimations anims;
 
 	// Start is called before the first frame update
@@ -37,17 +43,28 @@ public class PlayerCapitalMovement : MonoBehaviour
 		// Movement
 		Vector3 motionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
+		/*
+		if (Input.GetKey(KeyCode.LeftShift) && sprintCooldown <= 0.0f && !isSprinting)
+		{
+			isSprinting = true;
+			sprintCooldown = sprintCoolTime;
+			motionVector = targetDirection;
+			motionVector *= dashModifier;
+		}
+		*/
+
 		anims.SetMoving(motionVector.magnitude > 0.01f);
 
 		motionVector *= (moveSpeed * 10);
-
-		if (Input.GetKey(KeyCode.LeftShift))
-			motionVector *= sprintModifier;
 
 		motionVector.y = -1f;
 
 		motionVector *= Time.deltaTime;
 		controller.Move(motionVector);
+
+		/*
+		sprintCooldown = Mathf.Max(0, sprintCooldown - Time.deltaTime);
+		*/
 	}
 
 	public Vector3 targetDirection
