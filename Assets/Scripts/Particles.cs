@@ -7,7 +7,8 @@ public class Particles : MonoBehaviour
 	public static Particles inst;
 
 	public ParticleSystem blood,
-		fire;
+		fire,
+		water;
 
 
 
@@ -15,6 +16,7 @@ public class Particles : MonoBehaviour
 	{
 		BLOOD,
 		FIRE,
+		WATER,
 	}
 
 	public void Awake()
@@ -28,6 +30,7 @@ public class Particles : MonoBehaviour
 		{
 			case Type.BLOOD: return blood;
 			case Type.FIRE: return fire;
+			case Type.WATER: return water;
 		}
 		return null;
 	}
