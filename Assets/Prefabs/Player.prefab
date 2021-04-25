@@ -97,6 +97,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4190ec3d3f88c4145be0efddeeacedd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 10
+  earthF: 1
+  airF: 1
+  fireF: 1
+  waterF: 1
+  physicalF: 1
+  spiritF: 1
+  slashingF: 1
+  piercingF: 1
+  crushingF: 1
+  conjuringF: 1
   movement: {fileID: 0}
   attacks: {fileID: 0}
   inventory: {fileID: 0}
@@ -119,6 +130,7 @@ MonoBehaviour:
     type: 3}
   selectedWeaponSlot: 0
   weaponOrigin: {fileID: 1606790852406973771}
+  defaultSpells: []
 --- !u!114 &7003866201802873518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50303c4a5504f0e49b80a2d0e782e366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponOrigin: {fileID: 0}
+  weaponOrigin: {fileID: 1606790852406973771}
 --- !u!1001 &8903159649934735265
 PrefabInstance:
   m_ObjectHideFlags: 0
