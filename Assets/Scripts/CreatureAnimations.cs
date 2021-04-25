@@ -8,15 +8,15 @@ public class CreatureAnimations : MonoBehaviour
 
 	public float walkBobLR = 0.1f;
 	public float walkBobUD = 0.1f;
-	public float walkAnimSpeed = 5.0f;
-	public float walkWobble = 15.0f;
+	public float walkAnimSpeed = 6.0f;
+	public float walkWobble = 30.0f;
 
-	public float idleBobLR = 0.1f;
-	public float idleBobUD = 0.1f;
-	public float idleAnimSpeed = 5.0f;
-	public float idleWobble = 15.0f;
+	public float idleBobLR = 0.07f;
+	public float idleBobUD = 0.03f;
+	public float idleAnimSpeed = 2.5f;
+	public float idleWobble = 5.0f;
 
-	private bool moving = true;
+	private bool moving = false;
 	private float walkAnim = 0.0f;
 	private float idleAnim = 0.0f;
 
