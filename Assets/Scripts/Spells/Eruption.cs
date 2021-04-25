@@ -64,7 +64,7 @@ public class Eruption : Spell
 				}
 			}
 
-			caster.transform.position.Set(target.x, caster.transform.position.y, target.z);
+			owner.transform.position.Set(target.x, owner.transform.position.y, target.z);
 		}
 	}
 }

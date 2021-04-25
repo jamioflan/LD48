@@ -14,8 +14,8 @@ public abstract class Spell : InventoryItem
 
 	void Start()
 	{
-		Player playerCaster = caster.GetComponent<Player>();
-		Enemy enemyCaster = caster.GetComponent<Enemy>();
+		Player playerCaster = owner.GetComponent<Player>();
+		Enemy enemyCaster = owner.GetComponent<Enemy>();
 
 		isPlayerCaster = playerCaster != null;
 		isEnemyCaster = enemyCaster != null;
