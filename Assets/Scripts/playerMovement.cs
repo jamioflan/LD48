@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 			mouseCursor.position = hit.point;
 		}
 
+		anims.SetAimDirection(targetDirection);
+
 		// Movement
 		Vector3 motionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
@@ -52,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		get
 		{
-			return targetPosition.normalized;
+			return (targetPosition - transform.position).normalized;
 		}
 	}
 }

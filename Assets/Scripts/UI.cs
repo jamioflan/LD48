@@ -243,7 +243,7 @@ public class UI : MonoBehaviour
 	public void Announce(string message)
 	{
 		announcerText.text = message;
-		announcerTimeLeft = 3.0f;
+		announcerTimeLeft = 1.5f;
 	}
 
 	public void ConfirmInventoryChoices()

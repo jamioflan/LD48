@@ -104,7 +104,8 @@ public class CreatureAnimations : MonoBehaviour
 			{
 				case WeaponAnim.NONE:
 				{
-					weaponTransform.localPosition = aimDirection;
+					weaponTransform.localPosition = aimDirection * 0.5f + new Vector3(0f, 0.2f, 0f);
+					weaponTransform.localEulerAngles = new Vector3(0f, 0f, -aimDirection.x * 45f);
 					break;
 				}
 				case WeaponAnim.STAB:
