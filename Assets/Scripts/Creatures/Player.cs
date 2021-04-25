@@ -18,8 +18,8 @@ public class Player : Creature
 		inventory = GetComponent<PlayerInventory>();
     }
 
-    void Update()
+	protected override void Update()
     {
-        
+		base.Update();
     }
 }
