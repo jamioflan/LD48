@@ -5,8 +5,21 @@ using UnityEngine;
 public class InventoryItem : MonoBehaviour
 {
 	public Creature owner;
-    // Start is called before the first frame update
-    void Start()
+	public Texture2D texture;
+
+	public Texture2D GetTexture()
+	{
+		return texture;
+	}
+
+	public string displayName;
+	public string GetDescription()
+	{
+		return "Shiny";
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
         
     }

@@ -18,7 +18,7 @@ public class UI : MonoBehaviour
 		public Image magicItemSprite;
 		public Image magicItemCooldown;
 	}
-	public MagicItemSlot[] magicSlots = new MagicItemSlot[0];
+	public MagicItemSlot[] magicInfo = new MagicItemSlot[0];
 
 	// Announcer
 	public RectTransform announcer;
@@ -33,11 +33,100 @@ public class UI : MonoBehaviour
 	// Damage numbers
 	public DamageNumbers damageNumbersPrefab;
 
+	// End of Level Screen
+	public Text levelCompleteText;
+	public GridLayout killsGrid;
+	public UISlot[] shopSlots;
+	public UISlot[] magicSlots;
+	public UISlot[] weaponSlots;
+	public UISlot armourSlot;
+
+	public int selectedShopSlot = -1;
+	public int selectedWeaponSlot = -1;
+
+	public Text shopTutorial;
+
+
 	private void Awake()
 	{
 		inst = this;
 		announcer.gameObject.SetActive(true);
 	}
+
+	// Shop stuff
+	public void OpenShop(LevelData levelCompleted)
+	{
+		selectedShopSlot = -1;
+		InventoryItem[] loot = LootGenerator.inst.GenerateLoot(shopSlots.Length, levelCompleted.levelNumber);
+		for (int i = 0; i < shopSlots.Length; i++)
+		{
+			// Generate a shop item
+			shopSlots[i].SetItem(loot[i], UISlot.Type.SHOP, i);
+		}
+
+		selectedWeaponSlot = -1;
+		for (int i = 0; i < weaponSlots.Length; i++)
+		{
+			weaponSlots[i].SetItem(Player.inst.inventory.weapons.GetInSlot(i), UISlot.Type.WEAPON, i);
+			weaponSlots[i].SetSelected(false);
+		}
+
+		//for (int i = 0; i < magicSlots.Length; i++)
+		//{
+			//weaponSlots[i].SetItem(Player.inst.inventory.ma.GetInSlot(i));
+		//}
+
+	}
+
+	public void OnSlotClicked(UISlot slot)
+	{
+		switch(slot.type)
+		{
+			case UISlot.Type.WEAPON:
+			{
+				if (selectedShopSlot == -1)
+					shopTutorial.text = "Please choose an item to purchase";
+				else
+					selectedWeaponSlot = slot.id;
+				break;
+			}
+			case UISlot.Type.SHOP:
+			{
+				if (slot.item == null)
+					shopTutorial.text = "Already purchased";
+				else
+				{
+					shopTutorial.text = "Select a slot to replace";
+					selectedShopSlot = slot.id;
+				}
+				break;
+			}
+		}
+
+		// Now compare selections
+		if(selectedShopSlot != -1)
+		{
+			UISlot shopSlot = shopSlots[selectedShopSlot];
+			// We ready to purchase a weapon
+			if(shopSlot.item is Weapon && selectedWeaponSlot != -1)
+			{
+				// Purchase the item
+				Player.inst.inventory.Purchase(shopSlot.item, selectedWeaponSlot);
+				// Update visual slots
+				weaponSlots[selectedWeaponSlot].SetItem(shopSlot.item, UISlot.Type.WEAPON, selectedWeaponSlot);
+				shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
+				// Reset selections
+				selectedShopSlot = -1;
+				selectedWeaponSlot = -1;
+			}
+		}
+	}
+
+	public void CloseShop()
+	{
+
+	}
+	//
 
 	public void SetLevelNameText(string message)
 	{

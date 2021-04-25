@@ -4,19 +4,25 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+	public static LevelGenerator inst;
+
 	public List<LevelAssets> levels = new List<LevelAssets>();
 	public int levelSize = 64;
 
 	// Currently generated level
-	public int currentLevel = 0;
+	public LevelData currentLevel = null;
 	public Transform[,] walls = null;
 	public Transform floor = null;
-	public List<Transform> spawnedEnemies = new List<Transform>();
 
 	private const int WALL_TYPE_EMPTY = 0;
 	private const int WALL_TYPE_ROCK = 1;
 	private const int WALL_TYPE_BEDROCK = 2;
 	private const int WALL_TYPE_WALL = 3;
+
+	private void Awake()
+	{
+		inst = this;
+	}
 
 	void Start()
     {
@@ -33,7 +39,14 @@ public class LevelGenerator : MonoBehaviour
 		int assetsToUse = level % levels.Count;
 		LevelAssets assets = levels[assetsToUse];
 
-		currentLevel = level;
+		currentLevel = new LevelData()
+		{
+			levelNumber = level,
+			levelName = assets.displayName,
+			assets = assets,
+			bossName = "Fred",
+			enemies = new List<Transform>(),
+		};
 		int[,] wallTypes = new int[levelSize, levelSize];
 
 		// Start with cave carving
@@ -83,17 +96,17 @@ public class LevelGenerator : MonoBehaviour
 				{
 					case WALL_TYPE_ROCK:
 					{
-						walls[i, k] = Instantiate(assets.rockPrefab, new Vector3(i, 0, k), Quaternion.identity, transform);
+						walls[i, k] = Instantiate(assets.rockPrefab, new Vector3(i, -1f, k), Quaternion.identity, transform);
 						break;
 					}
 					case WALL_TYPE_WALL:
 					{
-						walls[i, k] = Instantiate(assets.wallPrefab, new Vector3(i, 0, k), Quaternion.identity, transform);
+						walls[i, k] = Instantiate(assets.wallPrefab, new Vector3(i, -1f, k), Quaternion.identity, transform);
 						break;
 					}
 					case WALL_TYPE_BEDROCK:
 					{
-						walls[i, k] = Instantiate(assets.bedrockPrefab, new Vector3(i, 0, k), Quaternion.identity, transform);
+						walls[i, k] = Instantiate(assets.bedrockPrefab, new Vector3(i, -1f, k), Quaternion.identity, transform);
 						break;
 					}
 				}
@@ -177,8 +190,11 @@ public class LevelGenerator : MonoBehaviour
 			found = true;
 
 			int count = Random.Range(spawn.minNumPerGroup, spawn.maxNumPerGroup + 1);
-			for(int i = 0; i < count; i++)
-				spawnedEnemies.Add(Instantiate(spawn.prefab, new Vector3(x + 0.5f, 0.0f, y + 0.5f), Quaternion.identity, transform));
+			for (int i = 0; i < count; i++)
+			{
+				Transform enemy = Instantiate(spawn.prefab, new Vector3(x + 0.5f, 0.0f, y + 0.5f), Quaternion.identity, transform);
+				currentLevel.enemies.Add(enemy);
+			}
 		}
 	}
 
@@ -259,7 +275,6 @@ public class LevelGenerator : MonoBehaviour
 
 	public void DeleteLevel()
 	{
-		currentLevel = -1;
 		foreach(Transform t in walls)
 		{
 			if(t != null)
@@ -271,9 +286,11 @@ public class LevelGenerator : MonoBehaviour
 			Destroy(floor.gameObject);
 		floor = null;
 
-		foreach (Transform t in spawnedEnemies)
+		foreach (Transform t in currentLevel.enemies)
 			if(t != null)
 				Destroy(t.gameObject);
-		spawnedEnemies.Clear();
+		currentLevel.enemies.Clear();
+
+		currentLevel = null;
 	}
 }
