@@ -24,7 +24,7 @@ public class PlayerSpells : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Q))
 		{
-
+			//Spell spell = inventory;
 		}
 		if (Input.GetKey(KeyCode.E))
 		{

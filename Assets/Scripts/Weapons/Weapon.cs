@@ -11,16 +11,4 @@ public abstract class Weapon : InventoryItem
 	public abstract float cooldownModifier();
 	public abstract float sweepAttackRangeModifier();
 	public abstract float jabAttackRangeModifier();
-
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -12,10 +12,10 @@ public class PlayerAttacks : MonoBehaviour
 	// Private variables
 	float baseAttackCooldown = 2.0f;
 	float baseSweepAttackRange = 2.5f;
-	float baseSweepAttackDamage = 1.0f;
-	float baseJabAttackRange = 10.0f;
-	float baseJabAttackDamage = 0.75f;
-	float jabAttackRadius = 1.5f;
+	float baseSweepAttackDamage = 0.75f;
+	float baseJabAttackRange = 6.0f;
+	float baseJabAttackDamage = 1.0f;
+	float jabAttackRadius = 0.75f;
 	float attackCountDown = 0.0f;
 	PlayerMovement movement = null;
 	PlayerInventory inventory = null;
@@ -58,7 +58,7 @@ public class PlayerAttacks : MonoBehaviour
 
 	void JabAttack(Weapon weapon)
 	{
-		Collider[] hitColliders = Physics.OverlapCapsule(transform.position, transform.position + (movement.targetDirection * baseJabAttackRange * weapon.jabAttackRangeModifier()), jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
+		Collider[] hitColliders = Physics.OverlapCapsule(transform.position + (movement.targetDirection * 0.25f), transform.position + (movement.targetDirection * baseJabAttackRange * weapon.jabAttackRangeModifier()), jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
 
 		foreach (Collider victim in hitColliders)
 		{
@@ -70,7 +70,7 @@ public class PlayerAttacks : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("You stabbed " + victim.name);
+				Debug.Log("You stabbed " + victim.name + " with damage " + baseJabAttackDamage + " and weapon modifier " + weapon.damageModifier);
 				if(weapon.isCrushingWeapon())
 					enemy.SufferDamage(baseJabAttackDamage * weapon.damageModifier, DamageType.Crushing, weapon.dElement);
 				else
@@ -93,7 +93,7 @@ public class PlayerAttacks : MonoBehaviour
 			}
 			else
 			{
-				Debug.Log("You slashed " + victim.name);
+				Debug.Log("You slashed " + victim.name + " with damage " + baseJabAttackDamage + " and weapon modifier " + weapon.damageModifier);
 				if (weapon.isCrushingWeapon())
 					enemy.SufferDamage(baseSweepAttackDamage * weapon.damageModifier, DamageType.Crushing, weapon.dElement);
 				else
