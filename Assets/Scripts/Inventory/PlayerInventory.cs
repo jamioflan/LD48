@@ -10,13 +10,14 @@ public class PlayerInventory : MonoBehaviour
 
 	public Inventory<Weapon> weapons;
 	public Inventory<Spell> spells;
+	public Inventory<Armour> armour;
 	public Inventory<InventoryItem> junk;
 
 	public Weapon defaultWeapon;
 	public int selectedWeaponSlot = 0;
 	public Transform weaponOrigin;
-
 	public List<Spell> defaultSpells = new List<Spell>();
+	public Armour defaultArmour;
 
 	public void CycleNextWeapon()
 	{
@@ -51,22 +52,33 @@ public class PlayerInventory : MonoBehaviour
 		return spells.GetInSlot(slot);
 	}
 
+	public Armour GetArmour()
+	{
+		return armour.GetInSlot(0);
+	}
+
 	public void Purchase(InventoryItem item, int toSlot)
 	{
 		if(item is Weapon weapon)
 		{
 			item.transform.SetParent(weaponOrigin);
 			item.owner = Player.inst;
-			junk.InsertJunkItem(weapons.ReplaceItem(weapon, toSlot));
+			weapons.ReplaceItem(weapon, toSlot);
 		}
 		else if(item is Spell spell)
 		{
-			junk.InsertJunkItem(spells.ReplaceItem(spell, toSlot));
+			spells.ReplaceItem(spell, toSlot);
 			item.transform.SetParent(weaponOrigin);
 			item.gameObject.SetActive(false);
 			item.owner = Player.inst;
 		}
-
+		else if(item is Armour arm)
+		{
+			armour.ReplaceItem(arm, 0);
+			item.transform.SetParent(weaponOrigin);
+			item.gameObject.SetActive(false);
+			item.owner = Player.inst;
+		}
 		
 	}
 
@@ -82,7 +94,7 @@ public class PlayerInventory : MonoBehaviour
 		}
 
 		spells = new Inventory<Spell>(numMagicSlots);
-		if (defaultWeapon != null)
+		if (defaultSpells != null)
 		{
 			int index = 0;
 			foreach(Spell spellPrefab in defaultSpells)
@@ -94,6 +106,14 @@ public class PlayerInventory : MonoBehaviour
 				index++;
 			}
 			
+		}
+
+		armour = new Inventory<Armour>(numArmourSlots);
+		if (defaultArmour != null)
+		{
+			Armour arm = Instantiate(defaultArmour);
+			armour.ReplaceItem(arm, 0);
+			arm.owner = Player.inst;
 		}
 	}
 

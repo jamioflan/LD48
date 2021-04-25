@@ -17,10 +17,13 @@ public class PlayerAttacks : MonoBehaviour
 	float baseJabAttackDamage = 1.0f;
 	float jabAttackRadius = 0.75f;
 	float attackCountDown = 0.0f;
+	float attackCountDownTotal = 1.0f;
 	PlayerMovement movement = null;
 	PlayerInventory inventory = null;
 	Weapon equippedWeapon = null;
 
+	public float GetAttackCooldown() { return attackCountDown; }
+	public float GetAttackCooldownParametric() { return attackCountDown / attackCountDownTotal; }
 
 
 	// Start is called before the first frame update
@@ -43,13 +46,13 @@ public class PlayerAttacks : MonoBehaviour
 				if (Input.GetMouseButton(0))
 				{
 					JabAttack(equippedWeapon);
-					attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
+					attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
 				}
 
 				if (Input.GetMouseButton(1))
 				{
 					SweepAttack(equippedWeapon);
-					attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
+					attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
 				}
 			}
 

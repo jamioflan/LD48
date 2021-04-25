@@ -47,12 +47,20 @@ public class UISlot : MonoBehaviour
 		if (item == null)
 		{
 			icon.sprite = null;
+			switch(t)
+			{
+				case Type.ARMOUR: nameText.text = "-Empty Armour Slot-"; break;
+				case Type.WEAPON: nameText.text = "-Empty Weapon Slot-"; break;
+				case Type.MAGIC: nameText.text = "-Empty Magic Slot-"; break;
+				case Type.SHOP: nameText.text = "-Empty-"; break;
+			}
+			statsText.text = "";
 		}
 		else
 		{
 			Texture2D tex = it.GetTexture();
 			icon.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
-			nameText.text = item.displayName;
+			nameText.text = item.GetDisplayName();
 			statsText.text = item.GetDescription();
 		}
 	}

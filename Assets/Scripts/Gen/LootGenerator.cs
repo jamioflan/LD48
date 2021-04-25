@@ -21,7 +21,9 @@ public class LootGenerator : MonoBehaviour
 		{
 			InventoryItem prefab = scaleableLootPrefabs[Random.Range(0, scaleableLootPrefabs.Count)];
 			InventoryItem instance = Instantiate(prefab);
-			//instance.Scale(levelCompleted);
+			int lootLevel = Random.Range(levelCompleted / 2, levelCompleted + 1);
+			instance.Scale(lootLevel);
+			instance.level = lootLevel;
 			instance.gameObject.SetActive(false);
 			result[i] = instance;
 		}

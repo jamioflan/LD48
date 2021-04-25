@@ -10,6 +10,9 @@ public class UI : MonoBehaviour
 	// Level Name
 	public Text levelNameText;
 
+	// Slots
+	public UIAttackInfo[] weaponInfos = new UIAttackInfo[0];
+
 	// Magic Slots
 	[System.Serializable]
 	public class MagicItemSlot
@@ -40,10 +43,12 @@ public class UI : MonoBehaviour
 	public UISlot[] shopSlots;
 	public UISlot[] magicSlots;
 	public UISlot[] weaponSlots;
-	public UISlot armourSlot;
+	public UISlot[] armourSlots;
 
 	public int selectedShopSlot = -1;
 	public int selectedWeaponSlot = -1;
+	public int selectedMagicSlot = -1;
+	public int selectedArmourSlot = -1;
 
 	public Text shopTutorial;
 
@@ -58,12 +63,18 @@ public class UI : MonoBehaviour
 	public void OpenShop(LevelData levelCompleted)
 	{
 		shop.SetActive(true);
+
+		levelCompleteText.text = $@"- Level {levelCompleted.levelNumber} Complete -
+{levelCompleted.levelName}
+";
+
 		selectedShopSlot = -1;
 		InventoryItem[] loot = LootGenerator.inst.GenerateLoot(shopSlots.Length, levelCompleted.levelNumber);
 		for (int i = 0; i < shopSlots.Length; i++)
 		{
 			// Generate a shop item
 			shopSlots[i].SetItem(loot[i], UISlot.Type.SHOP, i);
+			shopSlots[i].SetSelected(false);
 		}
 
 		selectedWeaponSlot = -1;
@@ -73,9 +84,23 @@ public class UI : MonoBehaviour
 			weaponSlots[i].SetSelected(false);
 		}
 
+		selectedMagicSlot = -1;
+		for (int i = 0; i < magicSlots.Length; i++)
+		{
+			magicSlots[i].SetItem(Player.inst.inventory.spells.GetInSlot(i), UISlot.Type.MAGIC, i);
+			magicSlots[i].SetSelected(false);
+		}
+
+		selectedArmourSlot = -1;
+		for (int i = 0; i < armourSlots.Length; i++)
+		{
+			armourSlots[i].SetItem(Player.inst.inventory.armour.GetInSlot(i), UISlot.Type.ARMOUR, i);
+			armourSlots[i].SetSelected(false);
+		}
+
 		//for (int i = 0; i < magicSlots.Length; i++)
 		//{
-			//weaponSlots[i].SetItem(Player.inst.inventory.ma.GetInSlot(i));
+		//weaponSlots[i].SetItem(Player.inst.inventory.ma.GetInSlot(i));
 		//}
 
 	}
@@ -87,9 +112,25 @@ public class UI : MonoBehaviour
 			case UISlot.Type.WEAPON:
 			{
 				if (selectedShopSlot == -1)
-					shopTutorial.text = "Please choose an item to purchase";
+					shopTutorial.text = "Please choose an item to purchase first";
 				else
 					selectedWeaponSlot = slot.id;
+				break;
+			}
+			case UISlot.Type.MAGIC:
+			{
+				if (selectedShopSlot == -1)
+					shopTutorial.text = "Please choose an item to purchase first";
+				else
+					selectedMagicSlot = slot.id;
+				break;
+			}
+			case UISlot.Type.ARMOUR:
+			{
+				if (selectedShopSlot == -1)
+					shopTutorial.text = "Please choose an item to purchase first";
+				else
+					selectedArmourSlot = slot.id;
 				break;
 			}
 			case UISlot.Type.SHOP:
@@ -100,6 +141,7 @@ public class UI : MonoBehaviour
 				{
 					shopTutorial.text = "Select a slot to replace";
 					selectedShopSlot = slot.id;
+					slot.SetSelected(true);
 				}
 				break;
 			}
@@ -118,8 +160,37 @@ public class UI : MonoBehaviour
 				weaponSlots[selectedWeaponSlot].SetItem(shopSlot.item, UISlot.Type.WEAPON, selectedWeaponSlot);
 				shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
 				// Reset selections
+				shopSlot.SetSelected(false);
 				selectedShopSlot = -1;
 				selectedWeaponSlot = -1;
+			}
+
+			// We ready to purchase a spell
+			if (shopSlot.item is Spell && selectedMagicSlot != -1)
+			{
+				// Purchase the item
+				Player.inst.inventory.Purchase(shopSlot.item, selectedMagicSlot);
+				// Update visual slots
+				magicSlots[selectedMagicSlot].SetItem(shopSlot.item, UISlot.Type.MAGIC, selectedMagicSlot);
+				shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
+				// Reset selections
+				shopSlot.SetSelected(false);
+				selectedShopSlot = -1;
+				selectedWeaponSlot = -1;
+			}
+
+			// We ready to purchase an armour
+			if (shopSlot.item is Armour && selectedArmourSlot != -1)
+			{
+				// Purchase the item
+				Player.inst.inventory.Purchase(shopSlot.item, selectedArmourSlot);
+				// Update visual slots
+				armourSlots[selectedArmourSlot].SetItem(shopSlot.item, UISlot.Type.ARMOUR, selectedArmourSlot);
+				shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
+				// Reset selections
+				shopSlot.SetSelected(false);
+				selectedShopSlot = -1;
+				selectedArmourSlot = -1;
 			}
 		}
 	}
@@ -128,7 +199,7 @@ public class UI : MonoBehaviour
 	{
 		shop.SetActive(false);
 	}
-	//
+	// 
 
 	public void SetLevelNameText(string message)
 	{
@@ -190,6 +261,21 @@ public class UI : MonoBehaviour
 		announcer.localPosition = announcerRestPos + new Vector3((1.0f - slideIn) * 3000f, 0f, 0f);
 
 
+		// Inventory slots
+		for (int i = 0; i < weaponInfos.Length; i++)
+		{
+			Weapon weapon = Player.inst.inventory.GetWeaponInSlot(i);
+			if (weapon == null)
+			{
+				weaponInfos[i].SetItem(null);
+			}
+			else
+			{
+				weaponInfos[i].SetItem(weapon);
+				weaponInfos[i].SetSelected(Player.inst.inventory.selectedWeaponSlot == i);
+				weaponInfos[i].SetCooldown(Player.inst.attacks.GetAttackCooldownParametric());
+			}
+		}
 	}
 
 	float smoothstep(float edge0, float edge1, float x)
