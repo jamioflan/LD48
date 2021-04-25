@@ -21,6 +21,9 @@ public abstract class Creature : MonoBehaviour
 
 	public Color bloodColour = Color.red;
 
+	protected float hitTimeDelay = 0.5f;
+	protected float hitTimeCountdown = 0.0f;
+
 
 	// Start is called before the first frame update
 	protected virtual void Start()
@@ -32,8 +35,10 @@ public abstract class Creature : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update()
     {
-		health = Mathf.Max(Mathf.Min(health, maxHealth),0);
-		tempHealth = Mathf.Max(Mathf.Min(maxHealth - health, tempHealth - (tempHealthLoss * Time.deltaTime)),0);
+		health = Mathf.Max(Mathf.Min(health, maxHealth),0.0f);
+		tempHealth = Mathf.Max(Mathf.Min(maxHealth - health, tempHealth - (tempHealthLoss * Time.deltaTime)),0.0f);
+
+		hitTimeCountdown = Mathf.Max(0.0f, hitTimeCountdown - Time.deltaTime);
     }
 
 	public virtual void Die()
@@ -64,6 +69,8 @@ public abstract class Creature : MonoBehaviour
 		{
 			return;
 		}
+
+		hitTimeCountdown = hitTimeDelay;
 
 		if (tempHealth >= 0)
 		{

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : Creature
 {
@@ -10,11 +11,14 @@ public class Enemy : Creature
 	protected Player target = null;
 
 	float detectionCountDown = 0.0f;
+	NavMeshAgent agent = null;
 
 	// Start is called before the first frame update
 	protected override void Start()
     {
 		base.Update();
+		agent = GetComponent<NavMeshAgent>();
+		agent.speed = moveSpeed;
 	}
 
 	// Update is called once per frame
@@ -41,14 +45,14 @@ public class Enemy : Creature
 
 			detectionCountDown = Random.Range(0.0f, 1.0f);
 		}
+		else if (hitTimeCountdown > 0.0f)
+		{
+			agent.SetDestination(transform.position);
+		}
 		else if (target != null)
 		{
 			// Move towards the Player
-
-			Vector3 targetDirection = (target.transform.position - transform.position).normalized;
-			Vector3 motionVector = new Vector3(targetDirection.x, 0, targetDirection.z);
-			motionVector *= moveSpeed;
-			motionVector *= Time.deltaTime;
+			agent.SetDestination(target.transform.position);
 		}
 
 		detectionCountDown = Mathf.Max(detectionCountDown - Time.deltaTime, 0.0f);
