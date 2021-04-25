@@ -23,8 +23,10 @@ public class Inventory<T> where T : InventoryItem
 			oldT.transform.parent = null;
 		}
 		slots[index] = newT;
-		if(newT != null)
+		if (newT != null)
+		{
 			newT.gameObject.SetActive(true);
+		}
 		return oldT;
 	}
 

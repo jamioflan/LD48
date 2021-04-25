@@ -48,6 +48,7 @@ public class PlayerInventory : MonoBehaviour
 		if(item is Weapon weapon)
 		{
 			item.transform.SetParent(weaponOrigin);
+			item.owner = Player.inst;
 			junk.InsertJunkItem(weapons.ReplaceItem(weapon, toSlot));
 		}
 
@@ -62,7 +63,7 @@ public class PlayerInventory : MonoBehaviour
 		{
 			Weapon weapon = Instantiate(defaultWeapon);
 			weapons.ReplaceItem(weapon, 0);
-			
+			weapon.owner = Player.inst;
 		}
 	}
 
