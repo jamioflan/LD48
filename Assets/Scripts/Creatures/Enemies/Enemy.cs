@@ -8,9 +8,16 @@ public class Enemy : Creature
 	public int treasure = 1;
 	public float detectionRange = 10.0f;
 	public float moveSpeed = 2.0f;
+	public float attackRange = 1.0f;
+	public float attackCooldownTime = 2.0f;
+	public float attackDamage = 1.0f;
+	public DamageType dType = DamageType.Crushing;
+	public DamageElement dElement = DamageElement.Physical;
+
 	protected Player target = null;
 
 	float detectionCountDown = 0.0f;
+	float attackCountDown = 0.0f;
 	NavMeshAgent agent = null;
 
 	// Start is called before the first frame update
@@ -53,13 +60,32 @@ public class Enemy : Creature
 		{
 			// Move towards the Player
 			agent.SetDestination(target.transform.position);
+
+			// Attack the Player
+
+			if (attackCountDown <= 0.0f)
+			{
+				Vector3 lineToTarget = target.transform.position - transform.position;
+
+				if (lineToTarget.magnitude <= attackRange)
+				{
+					attackCountDown = attackCooldownTime;
+					Attack(target);
+				}
+			}
 		}
 
 		detectionCountDown = Mathf.Max(detectionCountDown - Time.deltaTime, 0.0f);
+		attackCountDown = Mathf.Max(attackCountDown - Time.deltaTime, 0.0f);
 	}
 
 	public override void Die()
 	{
 		Destroy(gameObject);
+	}
+
+	public virtual void Attack (Player player)
+	{
+		player.SufferDamage(attackDamage,dType,dElement,transform.position);
 	}
 }
