@@ -293,14 +293,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 790672861, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
-      propertyPath: players.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 790672861, guid: a075c8770ebe74b4d8f57c3eb06574cf, type: 3}
-      propertyPath: players.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3573746435585270946, guid: a075c8770ebe74b4d8f57c3eb06574cf,
         type: 3}
       propertyPath: m_Name

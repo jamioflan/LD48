@@ -139,18 +139,18 @@ public class LevelGenerator : MonoBehaviour
 		{
 			float pick = Random.Range(0.0f, totalWeight);
 			int index = 0;
-			while(pick > 0.0f)
+
+			do
 			{
-				if (index >= assets.regularSpawns.Count)
-					break;
+				if (pick <= assets.regularSpawns[index].spawnWeight)
+				{
+					Spawn(assets.regularSpawns[index], wallTypes, spawnPoint);
+				}
+
 				pick -= assets.regularSpawns[index].spawnWeight;
 				index++;
 			}
-
-			if (index >= assets.regularSpawns.Count)
-				break;
-
-			Spawn(assets.regularSpawns[index], wallTypes, spawnPoint);
+			while (pick >= 0.0f && index < assets.regularSpawns.Count);
 		}
 
 		UI.inst.Announce($"Level {level + 1} - {assets.displayName}");

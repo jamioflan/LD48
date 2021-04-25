@@ -169,6 +169,8 @@ MonoBehaviour:
   announcerBobAngle: 4
   announcerSlideIn: 0
   announcerSlideInTime: 0.5
+  damageNumbersPrefab: {fileID: 19730889398749875, guid: a8dc45e4550e571419e29064f48ef1da,
+    type: 3}
 --- !u!1 &2858575574622588848
 GameObject:
   m_ObjectHideFlags: 0

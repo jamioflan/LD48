@@ -30,6 +30,9 @@ public class UI : MonoBehaviour
 	private Vector3 announcerRestPos = Vector3.zero;
 	public float announcerSlideInTime = 0.25f;
 
+	// Damage numbers
+	public DamageNumbers damageNumbersPrefab;
+
 	private void Awake()
 	{
 		inst = this;
@@ -50,6 +53,18 @@ public class UI : MonoBehaviour
 	public void ConfirmInventoryChoices()
 	{
 
+	}
+
+	public void SpawnDamageNumbers(int amount, Vector3 position)
+	{
+		SpawnDamageNumbers(amount, Color.red, position);
+	}
+
+	public void SpawnDamageNumbers(int amount, Color colour, Vector3 position)
+	{
+		DamageNumbers numbers = Instantiate(damageNumbersPrefab);
+		numbers.transform.position = position;
+		numbers.Init(amount, colour);
 	}
 
 	// Start is called before the first frame update

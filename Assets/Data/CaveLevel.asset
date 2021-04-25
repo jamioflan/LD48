@@ -24,7 +24,12 @@ MonoBehaviour:
   caveness: 0.6
   roomBudget: 32
   hallwayLength: 1.5
-  regularSpawns: []
+  regularSpawns:
+  - prefab: {fileID: 3716923563317774853, guid: 349022c60dbaec845823170db8eec13e,
+      type: 3}
+    spawnWeight: 1
+    minNumPerGroup: 1
+    maxNumPerGroup: 2
   numToSpawn: 8
   spawnBoss: 0
   bossData:

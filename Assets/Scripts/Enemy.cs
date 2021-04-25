@@ -32,8 +32,18 @@ public class Enemy : MonoBehaviour
 
 	public void SufferDamage(float damage, DamageType dType, DamageElement dElement)
 	{
-		damage *= TypeResistance(dType);
-		damage *= ElementResistance(dElement);
+		float multiplier = TypeResistance(dType);
+		multiplier *= ElementResistance(dElement);
+
+		Color damageNumberColour = Color.red;
+		if (multiplier > 1.0f)
+			damageNumberColour = Color.magenta;
+		if (multiplier < 1.0f)
+			damageNumberColour = Color.yellow;
+
+		UI.inst.SpawnDamageNumbers(Mathf.CeilToInt(damage), damageNumberColour, transform.position + new Vector3(0f, 3f, 0f));
+
+		damage *= multiplier;
 
 		if (damage >= health)
 		{
