@@ -24,23 +24,16 @@ public class Enemy : Creature
 
 		if (target = null)
 		{
-			Collider[] hitColliders = Physics.OverlapCapsule(transform.position + (movement.targetDirection * 0.25f), transform.position + (movement.targetDirection * baseJabAttackRange * weapon.jabAttackRangeModifier()), jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
+			Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << LayerMask.NameToLayer("Player"));
 
 			foreach (Collider victim in hitColliders)
 			{
-				Enemy enemy = victim.GetComponent<Enemy>();
+				Player player = victim.GetComponent<Player>();
 
-				if (enemy is null)
+				if (player != null)
 				{
-					Debug.Log("You failed to stab " + victim.name);
-				}
-				else
-				{
-					Debug.Log("You stabbed " + victim.name + " with damage " + baseJabAttackDamage + " and weapon modifier " + weapon.damageModifier);
-					if (weapon.isCrushingWeapon())
-						enemy.SufferDamage(baseJabAttackDamage * weapon.damageModifier, DamageType.Crushing, weapon.dElement, transform.position);
-					else
-						enemy.SufferDamage(baseJabAttackDamage * weapon.damageModifier, DamageType.Piercing, weapon.dElement, transform.position);
+					target = player;
+					return;
 				}
 			}
 		}
