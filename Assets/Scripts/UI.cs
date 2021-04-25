@@ -34,6 +34,7 @@ public class UI : MonoBehaviour
 	public DamageNumbers damageNumbersPrefab;
 
 	// End of Level Screen
+	public GameObject shop;
 	public Text levelCompleteText;
 	public GridLayout killsGrid;
 	public UISlot[] shopSlots;
@@ -56,6 +57,7 @@ public class UI : MonoBehaviour
 	// Shop stuff
 	public void OpenShop(LevelData levelCompleted)
 	{
+		shop.SetActive(true);
 		selectedShopSlot = -1;
 		InventoryItem[] loot = LootGenerator.inst.GenerateLoot(shopSlots.Length, levelCompleted.levelNumber);
 		for (int i = 0; i < shopSlots.Length; i++)
@@ -124,7 +126,7 @@ public class UI : MonoBehaviour
 
 	public void CloseShop()
 	{
-
+		shop.SetActive(false);
 	}
 	//
 

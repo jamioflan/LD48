@@ -9,14 +9,15 @@ public class Enemy : Creature
 	// Start is called before the first frame update
 	void Start()
     {
-        
-    }
+		
+
+	}
 
     // Update is called once per frame
     void Update()
     {
-
-    }
+		//Die();
+	}
 
 	public override void Die()
 	{

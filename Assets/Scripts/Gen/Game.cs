@@ -12,7 +12,7 @@ public class Game : MonoBehaviour
 	}
 
 	public State state = State.CHOOSE_CHARACTER;
-	public int level = 0;
+	public int level = -1;
 
     // Start is called before the first frame update
     void Start()

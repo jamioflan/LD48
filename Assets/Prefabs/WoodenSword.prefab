@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1057a16459b8d9b44a7be9dc8a856f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  texture: {fileID: 2800000, guid: 2c35f84049da03a4d90b6b218094315c, type: 3}
+  displayName: Wooden Sword
   dElement: 4
   damageModifier: 1
 --- !u!1001 &2819429115952156378

@@ -1,5 +1,100 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &368208236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 368208237}
+  - component: {fileID: 368208239}
+  - component: {fileID: 368208240}
+  - component: {fileID: 368208238}
+  m_Layer: 5
+  m_Name: Shop Title (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &368208237
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368208236}
+  m_LocalRotation: {x: -0, y: -0, z: 0.08132968, w: 0.9966873}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 970448094}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.33}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -100}
+  m_SizeDelta: {x: 300, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &368208239
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368208236}
+  m_CullTransparentMesh: 1
+--- !u!114 &368208240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368208236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.9972119, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: f27010bb522de3f499075db9b4f9b028, type: 3}
+    m_FontSize: 32
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 3
+    m_MaxSize: 200
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Shop
+--- !u!114 &368208238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368208236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 8, y: -8}
+  m_UseGraphicAlpha: 1
 --- !u!1 &865388755
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,11 +269,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  icon: {fileID: 0}
+  icon: {fileID: 1763545972}
   item: {fileID: 0}
   id: 0
-  nameText: {fileID: 0}
-  statsText: {fileID: 0}
+  nameText: {fileID: 1693916301}
+  statsText: {fileID: 1845572212}
   selectedOverlay: {fileID: 0}
 --- !u!114 &904560864
 MonoBehaviour:
@@ -270,6 +365,8 @@ RectTransform:
   - {fileID: 904560865}
   - {fileID: 6713890643555439998}
   - {fileID: 4103489063658368169}
+  - {fileID: 368208237}
+  - {fileID: 1809829302}
   m_Father: {fileID: 5122352289637369057}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -955,6 +1052,101 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1809829298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1809829302}
+  - component: {fileID: 1809829301}
+  - component: {fileID: 1809829299}
+  - component: {fileID: 1809829300}
+  m_Layer: 5
+  m_Name: Shop Title (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1809829302
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809829298}
+  m_LocalRotation: {x: -0, y: -0, z: 0.08132968, w: 0.9966873}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 970448094}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 9.33}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -100}
+  m_SizeDelta: {x: 300, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1809829301
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809829298}
+  m_CullTransparentMesh: 1
+--- !u!114 &1809829299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809829298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.9972119, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: f27010bb522de3f499075db9b4f9b028, type: 3}
+    m_FontSize: 32
+    m_FontStyle: 0
+    m_BestFit: 1
+    m_MinSize: 3
+    m_MaxSize: 200
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: Shop
+--- !u!114 &1809829300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809829298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
+  m_EffectDistance: {x: 8, y: -8}
+  m_UseGraphicAlpha: 1
 --- !u!1 &1845572210
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,11 +1280,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  icon: {fileID: 0}
+  icon: {fileID: 1581469990}
   item: {fileID: 0}
   id: 0
-  nameText: {fileID: 0}
-  statsText: {fileID: 0}
+  nameText: {fileID: 1340286957}
+  statsText: {fileID: 1357906039}
   selectedOverlay: {fileID: 0}
 --- !u!114 &2041440344
 MonoBehaviour:
@@ -1811,9 +2003,12 @@ MonoBehaviour:
   announcerSlideInTime: 0.5
   damageNumbersPrefab: {fileID: 19730889398749875, guid: a8dc45e4550e571419e29064f48ef1da,
     type: 3}
-  levelCompleteText: {fileID: 0}
+  shop: {fileID: 970448093}
+  levelCompleteText: {fileID: 368208240}
   killsGrid: {fileID: 0}
-  shopSlots: []
+  shopSlots:
+  - {fileID: 7058127117384589282}
+  - {fileID: 2434696410532359038}
   magicSlots: []
   weaponSlots:
   - {fileID: 2041440345}
@@ -1821,7 +2016,7 @@ MonoBehaviour:
   armourSlot: {fileID: 0}
   selectedShopSlot: -1
   selectedWeaponSlot: -1
-  shopTutorial: {fileID: 0}
+  shopTutorial: {fileID: 1809829299}
 --- !u!1 &2858575574622588848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2442,11 +2637,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  icon: {fileID: 0}
+  icon: {fileID: 1299179905924601316}
   item: {fileID: 0}
   id: 0
-  nameText: {fileID: 0}
-  statsText: {fileID: 0}
+  nameText: {fileID: 209439178044890274}
+  statsText: {fileID: 8675015303822231865}
   selectedOverlay: {fileID: 0}
 --- !u!114 &173569193076116052
 MonoBehaviour:
@@ -2708,11 +2903,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  icon: {fileID: 0}
+  icon: {fileID: 908224204303020272}
   item: {fileID: 0}
   id: 0
-  nameText: {fileID: 0}
-  statsText: {fileID: 0}
+  nameText: {fileID: 3792393168805433402}
+  statsText: {fileID: 6474960655405704132}
   selectedOverlay: {fileID: 0}
 --- !u!114 &8196836896055530191
 MonoBehaviour:
