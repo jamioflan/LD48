@@ -9,6 +9,8 @@ public class Enemy : Creature
 	public float moveSpeed = 2.0f;
 	protected Player target = null;
 
+	float detectionCountDown = 0.0f;
+
 	// Start is called before the first frame update
 	protected override void Start()
     {
@@ -20,10 +22,10 @@ public class Enemy : Creature
     {
 		base.Update();
 
-		// Detect the Player
-
-		if (target = null)
+		if (target == null && detectionCountDown <= 0.0f)
 		{
+			// Detect the Player
+
 			Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRange, 1 << LayerMask.NameToLayer("Player"));
 
 			foreach (Collider victim in hitColliders)
@@ -36,7 +38,20 @@ public class Enemy : Creature
 					return;
 				}
 			}
+
+			detectionCountDown = Random.Range(0.0f, 1.0f);
 		}
+		else if (target != null)
+		{
+			// Move towards the Player
+
+			Vector3 targetDirection = (target.transform.position - transform.position).normalized;
+			Vector3 motionVector = new Vector3(targetDirection.x, 0, targetDirection.z);
+			motionVector *= moveSpeed;
+			motionVector *= Time.deltaTime;
+		}
+
+		detectionCountDown = Mathf.Max(detectionCountDown - Time.deltaTime, 0.0f);
 	}
 
 	public override void Die()
