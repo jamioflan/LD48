@@ -2,12 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eruption : Spell
+public class TidalSurge : Spell
 {
-	float eruptionRadius = 1.0f;
-
-    // Start is called before the first frame update
-    void Start()
+	void Start()
     {
 		cooldownTimer = 5.0f;
 		countDown = 0.0f;
@@ -19,11 +16,10 @@ public class Eruption : Spell
 		{
 			if (isPlayerCaster)
 			{
-				Collider[] hitColliders = Physics.OverlapCapsule(transform.position, target, eruptionRadius, 1 << LayerMask.NameToLayer("Enemy"));
+				Enemy[] hitEnemies = GetComponents<Enemy>();
 
-				foreach (Collider victim in hitColliders)
+				foreach (Enemy enemy in hitEnemies)
 				{
-					Enemy enemy = victim.GetComponent<Enemy>();
 
 					if (enemy is null)
 					{
@@ -61,7 +57,6 @@ public class Eruption : Spell
 				countDown = cooldownTimer;
 			}
 
-			owner.transform.position.Set(target.x, owner.transform.position.y, target.z);
 		}
 	}
 }
