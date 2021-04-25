@@ -42,6 +42,8 @@ public class Eruption : Spell
 						enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Earth);
 					}
 				}
+
+				countDown = cooldownTimer;
 			}
 
 			if (isEnemyCaster)
@@ -62,6 +64,8 @@ public class Eruption : Spell
 						player.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Earth);
 					}
 				}
+
+				countDown = cooldownTimer;
 			}
 
 			owner.transform.position.Set(target.x, owner.transform.position.y, target.z);
