@@ -49,8 +49,8 @@ MonoBehaviour:
   level: 0
   displayName: Hefty Brick
   dElement: 4
-  damageModifier: 1
-  damageModifierPerLevel: 0.5
+  damageModifier: 3
+  damageModifierPerLevel: 1
 --- !u!1001 &2819429115952156378
 PrefabInstance:
   m_ObjectHideFlags: 0

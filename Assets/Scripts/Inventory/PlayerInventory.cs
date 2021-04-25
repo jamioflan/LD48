@@ -133,6 +133,15 @@ public class PlayerInventory : MonoBehaviour
 					weapon.transform.localPosition = Vector3.zero;
 					weapon.transform.localRotation = Quaternion.identity;
 					weapon.transform.localScale = Vector3.one;
+
+					switch(weapon.dElement)
+					{
+						case DamageElement.Fire:
+						{
+							//Particles.inst.Emit(weaponOrigin.position + weaponOrigin.up * Random.Range(0f, 1f), Vector3.zero, 1.0f, 2.0f, Color.orange)
+							break;
+						}
+					}
 				}
 				// Deactivate
 				else

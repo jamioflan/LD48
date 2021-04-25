@@ -33,6 +33,9 @@ public class UI : MonoBehaviour
 	private Vector3 announcerRestPos = Vector3.zero;
 	public float announcerSlideInTime = 0.25f;
 
+	// Coinage
+	public Text currencyText;
+
 	// Damage numbers
 	public DamageNumbers damageNumbersPrefab;
 	public UIHealthbar healthbarPrefab;
@@ -155,13 +158,23 @@ public class UI : MonoBehaviour
 			// We ready to purchase a weapon
 			if(shopSlot.item is Weapon && selectedWeaponSlot != -1)
 			{
-				// Purchase the item
-				Player.inst.inventory.Purchase(shopSlot.item, selectedWeaponSlot);
-				// Update visual slots
-				weaponSlots[selectedWeaponSlot].SetItem(shopSlot.item, UISlot.Type.WEAPON, selectedWeaponSlot);
-				shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
+				if (shopSlot.item.cost <= Game.inst.currency)
+				{
+					// Purchase the item
+					Game.inst.SpendCurrency(shopSlot.item.cost);
+					Player.inst.inventory.Purchase(shopSlot.item, selectedWeaponSlot);
+					// Update visual slots
+					weaponSlots[selectedWeaponSlot].SetItem(shopSlot.item, UISlot.Type.WEAPON, selectedWeaponSlot);
+					shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
+				}
+				else
+				{
+					shopTutorial.text = "You can't afford that";
+				}
+
 				// Reset selections
 				shopSlot.SetSelected(false);
+				weaponSlots[selectedWeaponSlot].SetSelected(false);
 				selectedShopSlot = -1;
 				selectedWeaponSlot = -1;
 			}
@@ -169,12 +182,22 @@ public class UI : MonoBehaviour
 			// We ready to purchase a spell
 			if (shopSlot.item is Spell && selectedMagicSlot != -1)
 			{
-				// Purchase the item
-				Player.inst.inventory.Purchase(shopSlot.item, selectedMagicSlot);
-				// Update visual slots
-				magicSlots[selectedMagicSlot].SetItem(shopSlot.item, UISlot.Type.MAGIC, selectedMagicSlot);
-				shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
+				if (shopSlot.item.cost <= Game.inst.currency)
+				{
+					// Purchase the item
+					Game.inst.SpendCurrency(shopSlot.item.cost);
+					Player.inst.inventory.Purchase(shopSlot.item, selectedMagicSlot);
+					// Update visual slots
+					magicSlots[selectedMagicSlot].SetItem(shopSlot.item, UISlot.Type.MAGIC, selectedMagicSlot);
+					shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
+				}
+				else
+				{
+					shopTutorial.text = "You can't afford that";
+				}
+
 				// Reset selections
+				magicSlots[selectedMagicSlot].SetSelected(false);
 				shopSlot.SetSelected(false);
 				selectedShopSlot = -1;
 				selectedWeaponSlot = -1;
@@ -183,12 +206,22 @@ public class UI : MonoBehaviour
 			// We ready to purchase an armour
 			if (shopSlot.item is Armour && selectedArmourSlot != -1)
 			{
-				// Purchase the item
-				Player.inst.inventory.Purchase(shopSlot.item, selectedArmourSlot);
-				// Update visual slots
-				armourSlots[selectedArmourSlot].SetItem(shopSlot.item, UISlot.Type.ARMOUR, selectedArmourSlot);
-				shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
+				if (shopSlot.item.cost <= Game.inst.currency)
+				{
+					// Purchase the item
+					Game.inst.SpendCurrency(shopSlot.item.cost);
+					Player.inst.inventory.Purchase(shopSlot.item, selectedArmourSlot);
+					// Update visual slots
+					armourSlots[selectedArmourSlot].SetItem(shopSlot.item, UISlot.Type.ARMOUR, selectedArmourSlot);
+					shopSlot.SetItem(null, UISlot.Type.SHOP, selectedShopSlot);
+				}
+				else
+				{
+					shopTutorial.text = "You can't afford that";
+				}
+
 				// Reset selections
+				armourSlots[selectedArmourSlot].SetSelected(false);
 				shopSlot.SetSelected(false);
 				selectedShopSlot = -1;
 				selectedArmourSlot = -1;
@@ -289,6 +322,9 @@ public class UI : MonoBehaviour
 				weaponInfos[i].SetCooldown(Player.inst.attacks.GetAttackCooldownParametric());
 			}
 		}
+
+		// Currency
+		currencyText.text = "" + Game.inst.currency;
 	}
 
 	float smoothstep(float edge0, float edge1, float x)

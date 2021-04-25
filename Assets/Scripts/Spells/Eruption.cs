@@ -33,7 +33,7 @@ public class Eruption : Spell
 					else
 					{
 						Debug.Log("You disturbed " + victim.name + " with damage " + spellDamage);
-						enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Earth);
+						enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Earth, transform.position);
 					}
 				}
 
@@ -55,7 +55,7 @@ public class Eruption : Spell
 					else
 					{
 						Debug.Log("The Enemy disturbed " + victim.name + " with damage " + spellDamage);
-						player.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Earth);
+						player.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Earth, transform.position);
 					}
 				}
 

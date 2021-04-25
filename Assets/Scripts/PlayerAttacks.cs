@@ -76,9 +76,9 @@ public class PlayerAttacks : MonoBehaviour
 			{
 				Debug.Log("You stabbed " + victim.name + " with damage " + baseJabAttackDamage + " and weapon modifier " + weapon.damageModifier);
 				if(weapon.isCrushingWeapon())
-					enemy.SufferDamage(baseJabAttackDamage * weapon.damageModifier, DamageType.Crushing, weapon.dElement);
+					enemy.SufferDamage(baseJabAttackDamage * weapon.damageModifier, DamageType.Crushing, weapon.dElement, transform.position);
 				else
-					enemy.SufferDamage(baseJabAttackDamage * weapon.damageModifier, DamageType.Piercing, weapon.dElement);
+					enemy.SufferDamage(baseJabAttackDamage * weapon.damageModifier, DamageType.Piercing, weapon.dElement, transform.position);
 			}
 		}
 	}
@@ -99,9 +99,9 @@ public class PlayerAttacks : MonoBehaviour
 			{
 				Debug.Log("You slashed " + victim.name + " with damage " + baseJabAttackDamage + " and weapon modifier " + weapon.damageModifier);
 				if (weapon.isCrushingWeapon())
-					enemy.SufferDamage(baseSweepAttackDamage * weapon.damageModifier, DamageType.Crushing, weapon.dElement);
+					enemy.SufferDamage(baseSweepAttackDamage * weapon.damageModifier, DamageType.Crushing, weapon.dElement, transform.position);
 				else
-					enemy.SufferDamage(baseSweepAttackDamage * weapon.damageModifier, DamageType.Slashing, weapon.dElement);
+					enemy.SufferDamage(baseSweepAttackDamage * weapon.damageModifier, DamageType.Slashing, weapon.dElement, transform.position);
 			}
 		}
 	}

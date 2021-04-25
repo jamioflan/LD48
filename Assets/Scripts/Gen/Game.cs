@@ -11,14 +11,32 @@ public class Game : MonoBehaviour
 		IN_SHOP,
 	}
 
+	public static Game inst;
+
 	public State state = State.CHOOSE_CHARACTER;
 	public int level = -1;
+	public int currency;
 
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		inst = this;
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
 		//UI.ShowCharacterSelection();
     }
+
+	public void AwardCurrency(int x)
+	{
+		currency += x;
+	}
+
+	public void SpendCurrency(int x)
+	{
+		currency -= x;
+	}
 
 	private void NextLevel()
 	{

@@ -19,6 +19,7 @@ public class UISlot : MonoBehaviour
 	public int id;
 	public Text nameText;
 	public Text statsText;
+	public Text costText;
 
 	public Image selectedOverlay;
 
@@ -55,6 +56,7 @@ public class UISlot : MonoBehaviour
 				case Type.SHOP: nameText.text = "-Empty-"; break;
 			}
 			statsText.text = "";
+			costText.text = "";
 		}
 		else
 		{
@@ -62,6 +64,7 @@ public class UISlot : MonoBehaviour
 			icon.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
 			nameText.text = item.GetDisplayName();
 			statsText.text = item.GetDescription();
+			costText.text = "" + item.cost;
 		}
 	}
 

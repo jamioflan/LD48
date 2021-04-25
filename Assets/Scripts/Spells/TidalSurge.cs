@@ -22,7 +22,7 @@ public class TidalSurge : Spell
 				foreach (Enemy enemy in hitEnemies)
 				{
 					Debug.Log("You watered " + enemy.name + " with damage " + spellDamage);
-					enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Water);
+					enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Water, transform.position);
 				}
 
 				countDown = cooldownTimer;
@@ -35,7 +35,7 @@ public class TidalSurge : Spell
 				foreach (Player player in players)
 				{
 					Debug.Log("The Enemy watered " + player.name + " with damage " + spellDamage);
-					player.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Water);
+					player.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Water, transform.position);
 				}
 
 				countDown = cooldownTimer;

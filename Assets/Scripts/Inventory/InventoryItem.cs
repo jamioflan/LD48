@@ -8,6 +8,7 @@ public abstract class InventoryItem : MonoBehaviour
 	public Creature owner;
 	public Texture2D texture;
 	public int level;
+	public int cost;
 
 	public Texture2D GetTexture()
 	{

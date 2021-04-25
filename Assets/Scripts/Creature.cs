@@ -19,6 +19,9 @@ public abstract class Creature : MonoBehaviour
 	public Foible crushingF = Foible.Regular;
 	public Foible conjuringF = Foible.Regular;
 
+	public Color bloodColour = Color.red;
+
+
 	// Start is called before the first frame update
 	void Start()
     {
@@ -38,7 +41,7 @@ public abstract class Creature : MonoBehaviour
 		Destroy(gameObject);
 	}
 
-	public void SufferDamage(float damage, DamageType dType, DamageElement dElement)
+	public void SufferDamage(float damage, DamageType dType, DamageElement dElement, Vector3 origin)
 	{
 		float multiplier = TypeResistance(dType);
 		multiplier *= ElementResistance(dElement);
@@ -51,6 +54,9 @@ public abstract class Creature : MonoBehaviour
 
 		UI.inst.SpawnDamageNumbers(Mathf.CeilToInt(damage), damageNumberColour, transform.position + new Vector3(0.5f, 1.5f, 0f));
 		UI.inst.SpawnHealthbar(this);
+
+		for(int i = 0; i < 30; i++)
+			Particles.inst.Emit(transform.position + Vector3.up, 3f * ((transform.position - origin).normalized + Random.insideUnitSphere), 1.0f, 3.0f, bloodColour, Particles.Type.BLOOD, 1);
 
 		damage *= multiplier;
 
