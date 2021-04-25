@@ -12,6 +12,31 @@ public class PlayerInventory : MonoBehaviour
 	public Inventory<InventoryItem> junk;
 
 	public Weapon defaultWeapon;
+	public int selectedWeaponSlot = 0;
+	public Transform weaponOrigin;
+
+	public void CycleNextWeapon()
+	{
+		selectedWeaponSlot++;
+		if(selectedWeaponSlot >= weapons.NumSlots)
+		{
+			selectedWeaponSlot = 0;
+		}
+	}
+
+	public void CyclePreviousWeapon()
+	{
+		selectedWeaponSlot--;
+		if (selectedWeaponSlot < 0)
+		{
+			selectedWeaponSlot = weapons.NumSlots - 1;
+		}
+	}
+
+	public Weapon GetSelectedWeapon()
+	{
+		return GetWeaponInSlot(selectedWeaponSlot);
+	}
 
 	public Weapon GetWeaponInSlot(int slot)
 	{
@@ -22,8 +47,11 @@ public class PlayerInventory : MonoBehaviour
 	{
 		if(item is Weapon weapon)
 		{
+			item.transform.SetParent(weaponOrigin);
 			junk.InsertJunkItem(weapons.ReplaceItem(weapon, toSlot));
 		}
+
+		
 	}
 
 	// Start is called before the first frame update
@@ -32,13 +60,35 @@ public class PlayerInventory : MonoBehaviour
 		weapons = new Inventory<Weapon>(numWeaponSlots);
 		if(defaultWeapon != null)
 		{
-			weapons.ReplaceItem(Instantiate(defaultWeapon), 0);
+			Weapon weapon = Instantiate(defaultWeapon);
+			weapons.ReplaceItem(weapon, 0);
+			
 		}
 	}
 
     // Update is called once per frame
     void Update()
     {
-        
+        for(int i = 0; i < weapons.NumSlots; i++)
+		{
+			Weapon weapon = weapons.GetInSlot(i);
+			if (weapon != null)
+			{
+				// Activate weapon prefab
+				if (i == selectedWeaponSlot)
+				{
+					weapon.gameObject.SetActive(true);
+					weapon.transform.SetParent(weaponOrigin);
+					weapon.transform.localPosition = Vector3.zero;
+					weapon.transform.localRotation = Quaternion.identity;
+					weapon.transform.localScale = Vector3.one;
+				}
+				// Deactivate
+				else
+				{
+					weapon.gameObject.SetActive(false);
+				}
+			}
+		}
     }
 }

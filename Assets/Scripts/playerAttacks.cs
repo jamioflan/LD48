@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerAttacks : MonoBehaviour
 {
 
+	// Inspector variables
+	public Transform weaponOrigin;
+
+
+	// Private variables
 	float baseAttackCooldown = 2.0f;
 	float baseSweepAttackRange = 2.5f;
 	float baseSweepAttackDamage = 1.0f;
@@ -14,6 +19,8 @@ public class PlayerAttacks : MonoBehaviour
 	float attackCountDown = 0.0f;
 	PlayerMovement movement = null;
 	PlayerInventory inventory = null;
+
+
 
 	// Start is called before the first frame update
 	void Start()
