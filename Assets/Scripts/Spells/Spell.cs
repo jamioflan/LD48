@@ -9,15 +9,15 @@ public abstract class Spell : InventoryItem
 	protected bool isEnemyCaster;
 	protected float cooldownTimer;
 	protected float countDown;
-	Player playerCaster = null;
-	Enemy enemyCaster = null;
+	Player playerCaster;
+	Enemy enemyCaster;
 
 	public abstract void castSpell(Vector3 target);
 
 	void Start()
 	{
-		Player playerCaster = owner.GetComponent<Player>();
-		Enemy enemyCaster = owner.GetComponent<Enemy>();
+		playerCaster = owner.GetComponent<Player>();
+		enemyCaster = owner.GetComponent<Enemy>();
 
 		isPlayerCaster = playerCaster != null;
 		isEnemyCaster = enemyCaster != null;

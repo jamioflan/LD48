@@ -19,6 +19,7 @@ public class PlayerAttacks : MonoBehaviour
 	float attackCountDown = 0.0f;
 	PlayerMovement movement = null;
 	PlayerInventory inventory = null;
+	Weapon equippedWeapon = null;
 
 
 
@@ -32,23 +33,23 @@ public class PlayerAttacks : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-		Weapon weapon = inventory.GetWeaponInSlot(0);
+		equippedWeapon = inventory.GetWeaponInSlot(0);
 
-		if (weapon != null)
+		if (equippedWeapon != null)
 		{
 			if (attackCountDown <= 0.0f)
 			{
 
 				if (Input.GetMouseButton(0))
 				{
-					JabAttack(weapon);
-					attackCountDown = baseAttackCooldown * weapon.cooldownModifier();
+					JabAttack(equippedWeapon);
+					attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
 				}
 
 				if (Input.GetMouseButton(1))
 				{
-					SweepAttack(weapon);
-					attackCountDown = baseAttackCooldown * weapon.cooldownModifier();
+					SweepAttack(equippedWeapon);
+					attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
 				}
 			}
 

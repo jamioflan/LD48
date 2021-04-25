@@ -7,6 +7,8 @@ public class PlayerSpells : MonoBehaviour
 
 	PlayerMovement movement = null;
 	PlayerInventory inventory = null;
+	Spell playerSpellA = null;
+	Spell playerSpellB = null;
 
 	bool shieldActive = false;
 	float shieldActiveTimer = 0.0f;
@@ -22,13 +24,16 @@ public class PlayerSpells : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Q))
-		{
-			//Spell spell = inventory;
-		}
-		if (Input.GetKey(KeyCode.E))
-		{
+		playerSpellA = inventory.GetSpellInSlot(0);
+		playerSpellB = inventory.GetSpellInSlot(1);
 
+        if (Input.GetKey(KeyCode.Q) && playerSpellA != null)
+		{
+			playerSpellA.castSpell(movement.targetPosition);
+		}
+		if (Input.GetKey(KeyCode.E) && playerSpellB != null)
+		{
+			playerSpellB.castSpell(movement.targetPosition);
 		}
 	}
 }
