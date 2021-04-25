@@ -5,6 +5,9 @@ using UnityEngine;
 public abstract class Creature : MonoBehaviour
 {
 	public float health = 10.0f;
+	public float maxHealth = 10.0f;
+	public float tempHealth = 0.0f;
+	public float tempHealthLoss = 0.05f;
 	public Foible earthF = Foible.Regular;
 	public Foible airF = Foible.Regular;
 	public Foible fireF = Foible.Regular;
@@ -26,7 +29,8 @@ public abstract class Creature : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+		health = Mathf.Max(Mathf.Min(health, maxHealth),0);
+		tempHealth = Mathf.Max(Mathf.Min(maxHealth - health, tempHealth - (tempHealthLoss * Time.deltaTime)),0);
     }
 
 	public virtual void Die()
@@ -49,13 +53,29 @@ public abstract class Creature : MonoBehaviour
 
 		damage *= multiplier;
 
+		if (damage <= 0)
+		{
+			return;
+		}
+
+		if (tempHealth >= 0)
+		{
+			if (damage >= tempHealth)
+			{
+				tempHealth = 0.0f;
+				damage -= tempHealth;
+			}
+		}
+
 		if (damage >= health)
 		{
 			health = 0.0f;
 			Die();
 		}
 		else
+		{
 			health -= damage;
+		}
 	}
 
 	float TypeResistance(DamageType dType)
@@ -88,6 +108,11 @@ public abstract class Creature : MonoBehaviour
 			case DamageElement.Water:
 				return waterF.DamageMultiplier();
 			case DamageElement.Physical:
+				Player player = GetComponent<Player>();
+				if (player != null && (player.inventory.GetSpellInSlot(0).GetShieldActive() || player.inventory.GetSpellInSlot(1).GetShieldActive()) && fireF != Foible.Immune)
+					return Foible.Resistant.DamageMultiplier();
+				else
+					return physicalF.DamageMultiplier();
 				return physicalF.DamageMultiplier();
 			case DamageElement.Spirit:
 				return spiritF.DamageMultiplier();

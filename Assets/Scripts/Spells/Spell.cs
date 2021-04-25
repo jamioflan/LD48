@@ -12,9 +12,9 @@ public abstract class Spell : InventoryItem
 	Player playerCaster;
 	Enemy enemyCaster;
 
-	public abstract void castSpell(Vector3 target);
+	public abstract void CastSpell(Vector3 target);
 
-	void Start()
+	protected virtual void Start()
 	{
 		playerCaster = owner.GetComponent<Player>();
 		enemyCaster = owner.GetComponent<Enemy>();
@@ -23,8 +23,13 @@ public abstract class Spell : InventoryItem
 		isEnemyCaster = enemyCaster != null;
 	}
 
-	void Update()
+	protected virtual void Update()
 	{
 		countDown = Mathf.Max(countDown - Time.deltaTime, 0.0f);
+	}
+
+	public virtual bool GetShieldActive()
+	{
+		return false;
 	}
 }

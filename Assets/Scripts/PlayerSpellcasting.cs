@@ -10,10 +10,6 @@ public class PlayerSpells : MonoBehaviour
 	Spell playerSpellA = null;
 	Spell playerSpellB = null;
 
-	bool shieldActive = false;
-	float shieldActiveTimer = 0.0f;
-	float shieldCountDown = 0.0f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,11 +25,11 @@ public class PlayerSpells : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Q) && playerSpellA != null)
 		{
-			playerSpellA.castSpell(movement.targetPosition);
+			playerSpellA.CastSpell(movement.targetPosition);
 		}
 		if (Input.GetKey(KeyCode.E) && playerSpellB != null)
 		{
-			playerSpellB.castSpell(movement.targetPosition);
+			playerSpellB.CastSpell(movement.targetPosition);
 		}
 	}
 }
