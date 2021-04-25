@@ -20,16 +20,8 @@ public class TidalSurge : Spell
 
 				foreach (Enemy enemy in hitEnemies)
 				{
-
-					if (enemy is null)
-					{
-						Debug.Log("You failed to disturb " + victim.name);
-					}
-					else
-					{
-						Debug.Log("You disturbed " + victim.name + " with damage " + spellDamage);
-						enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Earth);
-					}
+					Debug.Log("You watered " + enemy.name + " with damage " + spellDamage);
+					enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Water);
 				}
 
 				countDown = cooldownTimer;
@@ -37,21 +29,12 @@ public class TidalSurge : Spell
 
 			if (isEnemyCaster)
 			{
-				Collider[] hitColliders = Physics.OverlapCapsule(transform.position, target, eruptionRadius, 1 << LayerMask.NameToLayer("Player"));
+				Player[] players = GetComponents<Player>();
 
-				foreach (Collider victim in hitColliders)
+				foreach (Player player in players)
 				{
-					Player player = victim.GetComponent<Player>();
-
-					if (player is null)
-					{
-						Debug.Log("The failed to disturb " + victim.name);
-					}
-					else
-					{
-						Debug.Log("The Enemy disturbed " + victim.name + " with damage " + spellDamage);
-						player.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Earth);
-					}
+					Debug.Log("The Enemy watered " + player.name + " with damage " + spellDamage);
+					player.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Water);
 				}
 
 				countDown = cooldownTimer;
