@@ -74,7 +74,7 @@ public class PlayerAttacks : MonoBehaviour
 		{
 			Enemy enemy = victim.GetComponent<Enemy>();
 
-			if (enemy is null)
+			if (enemy == null)
 			{
 				Debug.Log("You failed to stab " + victim.name);
 			}
@@ -99,7 +99,7 @@ public class PlayerAttacks : MonoBehaviour
 		{
 			Enemy enemy = victim.GetComponent<Enemy>();
 
-			if (enemy is null)
+			if (enemy == null)
 			{
 				Debug.Log("You failed to slash " + victim.name);
 			}

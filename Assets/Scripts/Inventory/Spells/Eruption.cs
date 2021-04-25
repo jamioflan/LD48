@@ -26,7 +26,7 @@ public class Eruption : Spell
 				{
 					Enemy enemy = victim.GetComponent<Enemy>();
 
-					if (enemy is null)
+					if (enemy == null)
 					{
 						Debug.Log("You failed to disturb " + victim.name);
 					}
@@ -48,7 +48,7 @@ public class Eruption : Spell
 				{
 					Player player = victim.GetComponent<Player>();
 
-					if (player is null)
+					if (player == null)
 					{
 						Debug.Log("The failed to disturb " + victim.name);
 					}
