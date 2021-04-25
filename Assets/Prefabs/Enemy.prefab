@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3716923563317774854}
   - component: {fileID: 3716923563317774855}
   - component: {fileID: 3716923563317774848}
+  - component: {fileID: 2427793292736255483}
   m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
@@ -96,3 +97,27 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2427793292736255483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3716923563317774849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ed1100006da0284495d2f059191f52a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  treasure: 1
+  earthF: 1
+  airF: 1
+  fireF: 1
+  waterF: 1
+  physicalF: 1
+  spiritF: 1
+  slashingF: 1
+  piercingF: 1
+  crushingF: 1
+  conjuringF: 1
