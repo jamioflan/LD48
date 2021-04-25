@@ -284,6 +284,10 @@ public class UI : MonoBehaviour
 	public void ShowCharacterSelection()
 	{
 		characterSelectScreen.SetActive(true);
+
+		charName.text = Player.inst.names[charSelection];
+		charDesc.text = Player.inst.descs[charSelection];
+		characterIcon.sprite = Player.inst.icons[charSelection];
 	}
 
 	public int charSelection;
