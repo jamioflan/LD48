@@ -18,7 +18,7 @@ public class PlayerAttacks : MonoBehaviour
 	float jabAttackRadius = 0.75f;
 	float attackCountDown = 0.0f;
 	float attackCountDownTotal = 1.0f;
-	PlayerMovement movement = null;
+	PlayerCapitalMovement movement = null;
 	PlayerInventory inventory = null;
 	CreatureAnimations animations = null;
 	Weapon equippedWeapon = null;
@@ -30,7 +30,7 @@ public class PlayerAttacks : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		movement = GetComponent<PlayerMovement>();
+		movement = GetComponent<PlayerCapitalMovement>();
 		inventory = GetComponent<PlayerInventory>();
 		animations = GetComponent<CreatureAnimations>();
 	}
@@ -66,7 +66,7 @@ public class PlayerAttacks : MonoBehaviour
 
 	void JabAttack(Weapon weapon)
 	{
-		animations.PlayAnim(CreatureAnimations.WeaponAnim.STAB, movement.targetDirection, attackCountDown);
+		animations.PlayAnim(CreatureAnimations.WeaponAnim.STAB, movement.targetDirection, 0.5f);
 
 		Collider[] hitColliders = Physics.OverlapCapsule(transform.position + (movement.targetDirection * 0.25f), transform.position + (movement.targetDirection * baseJabAttackRange * weapon.jabAttackRangeModifier()), jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
 
@@ -91,7 +91,7 @@ public class PlayerAttacks : MonoBehaviour
 
 	void SweepAttack(Weapon weapon)
 	{
-		animations.PlayAnim(CreatureAnimations.WeaponAnim.SWING, movement.targetDirection, attackCountDown);
+		animations.PlayAnim(CreatureAnimations.WeaponAnim.SWING, movement.targetDirection, 0.5f);
 
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, baseSweepAttackRange * weapon.sweepAttackRangeModifier(), 1 << LayerMask.NameToLayer("Enemy"));
 

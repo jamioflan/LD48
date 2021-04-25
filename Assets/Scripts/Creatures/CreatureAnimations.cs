@@ -112,8 +112,17 @@ public class CreatureAnimations : MonoBehaviour
 				{
 					float t = weaponAnimTime / weaponAnimLength;
 
-					weaponTransform.localPosition = directionOfAnim * (1.0f + Mathf.Sin(t * Mathf.PI) * 1.0f);
+					weaponTransform.localPosition = directionOfAnim * (0.5f + Mathf.Clamp01(Mathf.Sin(t * Mathf.PI) * 1.1f) * 0.75f) + new Vector3(0f, 0.2f, 0f);
+					weaponTransform.localEulerAngles = new Vector3(0f, 0f, -Mathf.Sign(directionOfAnim.x) * 90f);
 
+					break;
+				}
+				case WeaponAnim.SWING:
+				{
+					float t = weaponAnimTime / weaponAnimLength;
+
+					weaponTransform.localPosition = Quaternion.Euler(new Vector3(0f, t * 360f, 0f)) * (directionOfAnim * 0.75f);
+					weaponTransform.localEulerAngles = new Vector3(0f, 0f, -(weaponTransform.localPosition.x) * 90f);
 
 					break;
 				}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSpells : MonoBehaviour
 {
 
-	PlayerMovement movement = null;
+	PlayerCapitalMovement movement = null;
 	PlayerInventory inventory = null;
 	Spell playerSpellA = null;
 	Spell playerSpellB = null;
@@ -13,7 +13,7 @@ public class PlayerSpells : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-		movement = GetComponent<PlayerMovement>();
+		movement = GetComponent<PlayerCapitalMovement>();
 		inventory = GetComponent<PlayerInventory>();
 	}
 

@@ -6,14 +6,14 @@ public class Player : Creature
 {
 	public static Player inst;
 
-	public PlayerMovement movement;
+	public PlayerCapitalMovement movement;
 	public PlayerAttacks attacks;
 	public PlayerInventory inventory;
 
     void Awake()
     {
 		inst = this;
-		movement = GetComponent<PlayerMovement>();
+		movement = GetComponent<PlayerCapitalMovement>();
 		attacks = GetComponent<PlayerAttacks>();
 		inventory = GetComponent<PlayerInventory>();
     }

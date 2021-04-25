@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerCapitalMovement : MonoBehaviour
 {
 	public float moveSpeed = 1.0f;
 	public float sprintModifier = 1.5f;
