@@ -157,15 +157,15 @@ MonoBehaviour:
   - {fileID: 2100000, guid: b1c1e116577ab2543ae2bb13aa6e48d9, type: 2}
   character: 0
   names:
-  - Archer
-  - Druid
-  - Knight
-  - Wizard
+  - Pue
+  - Dearie
+  - Knicky
+  - Swizzle
   descs:
-  - A boring archer
-  - A boring druid
-  - A boring knight
-  - A boring wizard
+  - Yankee Doodle Dandy
+  - Just a deer
+  - Gives you helmet hair
+  - Difficult. Very difficult. Plenty of courage, I see. not a bad mind either.
   movement: {fileID: 0}
   attacks: {fileID: 0}
   inventory: {fileID: 0}
@@ -203,7 +203,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.4
-  sprintModifier: 1.5
+  dashModifier: 10
+  dashDuration: 0.2
   targetPosition: {x: 0, y: 0, z: 0}
   mouseCursor: {fileID: 176701504}
 --- !u!114 &1078108134027744751
