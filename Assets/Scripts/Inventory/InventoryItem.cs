@@ -30,8 +30,11 @@ public abstract class InventoryItem : MonoBehaviour
 	protected virtual void Start()
 	{
 		MeshRenderer mr = GetComponentInChildren<MeshRenderer>();
-		mr.sharedMaterial = new Material(mr.sharedMaterial);
-		mr.sharedMaterial.mainTexture = texture;
+		if (mr != null)
+		{
+			mr.sharedMaterial = new Material(mr.sharedMaterial);
+			mr.sharedMaterial.mainTexture = texture;
+		}
 	}
 
 	// Update is called once per frame

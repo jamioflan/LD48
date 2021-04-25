@@ -188,7 +188,9 @@ MonoBehaviour:
     type: 3}
   selectedWeaponSlot: 0
   weaponOrigin: {fileID: 1606790852406973771}
-  defaultSpells: []
+  defaultSpells:
+  - {fileID: 739382065838794707, guid: 330f302e4cb7daa46a3d5ec3ae71739f, type: 3}
+  - {fileID: 4811454996568460130, guid: 8e442b3947bdc8b48a7965c765295784, type: 3}
   defaultArmour: {fileID: 0}
 --- !u!114 &7003866201802873518
 MonoBehaviour:

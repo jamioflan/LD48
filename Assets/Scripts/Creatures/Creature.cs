@@ -123,7 +123,9 @@ public abstract class Creature : MonoBehaviour
 				return waterF.DamageMultiplier();
 			case DamageElement.Physical:
 				Player player = GetComponent<Player>();
-				if (player != null && (player.inventory.GetSpellInSlot(0).GetShieldActive() || player.inventory.GetSpellInSlot(1).GetShieldActive()) && physicalF != Foible.Immune)
+				if (physicalF == Foible.Immune || player == null)
+					return physicalF.DamageMultiplier();
+				else if (player.inventory.GetSpellInSlot(0).GetShieldActive() || player.inventory.GetSpellInSlot(1).GetShieldActive())
 					return Foible.Resistant.DamageMultiplier();
 				else
 					return physicalF.DamageMultiplier();
