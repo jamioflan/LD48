@@ -26,7 +26,7 @@ public class LevelGenerator : MonoBehaviour
 
 	void Start()
     {
-		GenerateLevel(0);
+		//GenerateLevel(0);
     }
 
     void Update()
