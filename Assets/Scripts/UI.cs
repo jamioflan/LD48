@@ -57,6 +57,11 @@ public class UI : MonoBehaviour
 
 	public Text shopTutorial;
 
+	// Character Select Screen
+	public GameObject characterSelectScreen;
+	public Image characterIcon;
+	public Text charName, charDesc;
+
 
 	private void Awake()
 	{
@@ -274,6 +279,41 @@ public class UI : MonoBehaviour
 			//hpBar.transform.localScale = Vector3.one;
 			hpBar.creature = creature;
 		}
+	}
+
+	public void ShowCharacterSelection()
+	{
+		characterSelectScreen.SetActive(true);
+	}
+
+	public int charSelection;
+	public void PrevChar()
+	{
+		charSelection--;
+		if (charSelection < 0)
+			charSelection = 3;
+
+		charName.text = Player.inst.names[charSelection];
+		charDesc.text = Player.inst.descs[charSelection];
+		characterIcon.sprite = Player.inst.icons[charSelection];
+	}
+
+	public void NextChar()
+	{
+		charSelection++;
+		if (charSelection > 3)
+			charSelection = 0;
+
+		charName.text = Player.inst.names[charSelection];
+		charDesc.text = Player.inst.descs[charSelection];
+		characterIcon.sprite = Player.inst.icons[charSelection];
+	}
+
+	public void ConfirmCharacterSelection()
+	{
+		characterSelectScreen.SetActive(false);
+		Player.inst.ConfirmCharacter((Player.Character)charSelection);
+		Game.inst.Begin();
 	}
 
 	// Start is called before the first frame update

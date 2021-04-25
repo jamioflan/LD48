@@ -44,6 +44,15 @@ public class Game : MonoBehaviour
 		LevelGenerator.inst.GenerateLevel(level);
 	}
 
+	public void Begin()
+	{
+		if(state == State.CHOOSE_CHARACTER)
+		{
+			state = State.IN_LEVEL;
+			NextLevel();
+		}
+	}
+
 	public void FinishedShopping()
 	{
 		if(state == State.IN_SHOP)
@@ -60,8 +69,7 @@ public class Game : MonoBehaviour
 		{
 			case State.CHOOSE_CHARACTER:
 			{
-				state = State.IN_LEVEL;
-				NextLevel();
+				UI.inst.ShowCharacterSelection();
 				break;
 			}
 			case State.IN_LEVEL:

@@ -145,6 +145,27 @@ MonoBehaviour:
   crushingF: 1
   conjuringF: 1
   bloodColour: {r: 1, g: 0, b: 0, a: 1}
+  icons:
+  - {fileID: 21300000, guid: 9d18544ddc05c004ebc562751fd018ca, type: 3}
+  - {fileID: 21300000, guid: bb2aed4c60b3da548b5d22e5d19194de, type: 3}
+  - {fileID: 21300000, guid: be91fa2db998b4446a59035c6144e8e6, type: 3}
+  - {fileID: 21300000, guid: 851c65242a43b0f43bd234168efb2b1d, type: 3}
+  skins:
+  - {fileID: 2100000, guid: ee1472f9e79f36a43a8c162f601fd358, type: 2}
+  - {fileID: 2100000, guid: e4a3b837fe8975b46a424edb94d026af, type: 2}
+  - {fileID: 2100000, guid: 9be0f64b024d06046b95683638e99372, type: 2}
+  - {fileID: 2100000, guid: b1c1e116577ab2543ae2bb13aa6e48d9, type: 2}
+  character: 0
+  names:
+  - Archer
+  - Druid
+  - Knight
+  - Wizard
+  descs:
+  - A boring archer
+  - A boring druid
+  - A boring knight
+  - A boring wizard
   movement: {fileID: 0}
   attacks: {fileID: 0}
   inventory: {fileID: 0}
