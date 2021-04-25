@@ -23,14 +23,14 @@ public abstract class Creature : MonoBehaviour
 
 
 	// Start is called before the first frame update
-	void Start()
+	protected override void Start()
     {
 		if (health <= 0.0f)
 			Die();
 	}
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	protected override void Update()
     {
 		health = Mathf.Max(Mathf.Min(health, maxHealth),0);
 		tempHealth = Mathf.Max(Mathf.Min(maxHealth - health, tempHealth - (tempHealthLoss * Time.deltaTime)),0);
