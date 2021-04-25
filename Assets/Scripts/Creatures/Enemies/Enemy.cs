@@ -93,4 +93,9 @@ public class Enemy : Creature
 	{
 		player.SufferDamage(attackDamage,dType,dElement,transform.position);
 	}
+
+	public bool hasTarget()
+	{
+		return target != null;
+	}
 }

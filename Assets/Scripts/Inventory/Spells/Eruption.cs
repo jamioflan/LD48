@@ -6,14 +6,6 @@ public class Eruption : Spell
 {
 	float eruptionRadius = 1.0f;
 
-    // Start is called before the first frame update
-    protected override void Start()
-    {
-		base.Start();
-		cooldownTimer = 5.0f;
-		countDown = 0.0f;
-	}
-
 	public override void CastSpell(Vector3 target)
 	{
 		if (countDown <= 0.0f && (isPlayerCaster || isEnemyCaster))

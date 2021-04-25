@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class TidalSurge : Spell
 {
-	protected override void Start()
-    {
-		base.Start();
-		cooldownTimer = 5.0f;
-		countDown = 0.0f;
-	}
-
 	public override void CastSpell(Vector3 target)
 	{
 		if (countDown <= 0.0f && (isPlayerCaster || isEnemyCaster))
@@ -21,8 +14,11 @@ public class TidalSurge : Spell
 
 				foreach (Enemy enemy in hitEnemies)
 				{
-					Debug.Log("You watered " + enemy.name + " with damage " + spellDamage);
-					enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Water, transform.position);
+					if (enemy.hasTarget())
+					{
+						Debug.Log("You watered " + enemy.name + " with damage " + spellDamage);
+						enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Water, transform.position);
+					}
 				}
 
 				countDown = cooldownTimer;
@@ -40,7 +36,6 @@ public class TidalSurge : Spell
 
 				countDown = cooldownTimer;
 			}
-
 		}
 	}
 }

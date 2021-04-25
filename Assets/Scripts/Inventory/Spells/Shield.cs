@@ -8,14 +8,6 @@ public class Shield : Spell
 	float shieldDuration = 2.5f;
 	float shieldCountDown = 0.0f;
 
-	// Start is called before the first frame update
-	protected override void Start()
-	{
-		base.Start();
-		cooldownTimer = 5.0f;
-		countDown = 0.0f;
-	}
-
 	// Update is called once per frame
 	protected override void Update()
     {
