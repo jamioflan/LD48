@@ -224,11 +224,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7003866201802873518, guid: fc33b95082aae4d47a9e6a7c11970c07,
-        type: 3}
-      propertyPath: moveSpeed
-      value: 0.4
-      objectReference: {fileID: 0}
     - target: {fileID: 7223909526510828406, guid: fc33b95082aae4d47a9e6a7c11970c07,
         type: 3}
       propertyPath: m_Name
@@ -291,12 +286,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc33b95082aae4d47a9e6a7c11970c07, type: 3}
---- !u!4 &761982978 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8936507231165091914, guid: fc33b95082aae4d47a9e6a7c11970c07,
-    type: 3}
-  m_PrefabInstance: {fileID: 659273716}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &785035807
 GameObject:
   m_ObjectHideFlags: 0
@@ -10202,33 +10191,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!1 &2104894188 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7223909526510828406, guid: fc33b95082aae4d47a9e6a7c11970c07,
-    type: 3}
-  m_PrefabInstance: {fileID: 659273716}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2104894189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2104894188}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d6edad25de9d74d8b4f28b94abb624, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  body: {fileID: 761982978}
-  walkBobLR: 0.1
-  walkBobUD: 0.1
-  walkAnimSpeed: 6
-  walkWobble: 30
-  idleBobLR: 0.07
-  idleBobUD: 0.03
-  idleAnimSpeed: 2.5
-  idleWobble: 5
 --- !u!1001 &1103431322969076872
 PrefabInstance:
   m_ObjectHideFlags: 0

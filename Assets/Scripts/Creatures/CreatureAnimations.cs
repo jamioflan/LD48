@@ -89,29 +89,33 @@ public class CreatureAnimations : MonoBehaviour
 				Mathf.Cos(idleAnim) * idleWobble);
 		}
 
-		if(currentAnim != WeaponAnim.NONE)
+		if (weaponTransform != null)
 		{
-			weaponAnimTime += Time.deltaTime;
-
-			if (weaponAnimTime >= weaponAnimLength)
-				currentAnim = WeaponAnim.NONE;
-		}
-
-		switch(currentAnim)
-		{
-			case WeaponAnim.NONE:
+			if (currentAnim != WeaponAnim.NONE)
 			{
-				weaponTransform.localPosition = aimDirection;
-				break;
+				weaponAnimTime += Time.deltaTime;
+
+				if (weaponAnimTime >= weaponAnimLength)
+					currentAnim = WeaponAnim.NONE;
 			}
-			case WeaponAnim.STAB:
+
+
+			switch (currentAnim)
 			{
-				float t = weaponAnimTime / weaponAnimLength;
+				case WeaponAnim.NONE:
+				{
+					weaponTransform.localPosition = aimDirection;
+					break;
+				}
+				case WeaponAnim.STAB:
+				{
+					float t = weaponAnimTime / weaponAnimLength;
 
-				weaponTransform.localPosition = directionOfAnim * (1.0f + Mathf.Sin(t * Mathf.PI) * 1.0f);
+					weaponTransform.localPosition = directionOfAnim * (1.0f + Mathf.Sin(t * Mathf.PI) * 1.0f);
 
 
-				break;
+					break;
+				}
 			}
 		}
 	}

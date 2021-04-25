@@ -20,6 +20,7 @@ public class PlayerAttacks : MonoBehaviour
 	float attackCountDownTotal = 1.0f;
 	PlayerMovement movement = null;
 	PlayerInventory inventory = null;
+	CreatureAnimations animations = null;
 	Weapon equippedWeapon = null;
 
 	public float GetAttackCooldown() { return attackCountDown; }
@@ -31,6 +32,7 @@ public class PlayerAttacks : MonoBehaviour
     {
 		movement = GetComponent<PlayerMovement>();
 		inventory = GetComponent<PlayerInventory>();
+		animations = GetComponent<CreatureAnimations>();
 	}
 
 	// Update is called once per frame
@@ -45,14 +47,16 @@ public class PlayerAttacks : MonoBehaviour
 
 				if (Input.GetMouseButton(0))
 				{
-					JabAttack(equippedWeapon);
 					attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
+					JabAttack(equippedWeapon);
+					
 				}
 
 				if (Input.GetMouseButton(1))
 				{
-					SweepAttack(equippedWeapon);
 					attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
+					SweepAttack(equippedWeapon);
+					
 				}
 			}
 
@@ -62,6 +66,8 @@ public class PlayerAttacks : MonoBehaviour
 
 	void JabAttack(Weapon weapon)
 	{
+		animations.PlayAnim(CreatureAnimations.WeaponAnim.STAB, movement.targetDirection, attackCountDown);
+
 		Collider[] hitColliders = Physics.OverlapCapsule(transform.position + (movement.targetDirection * 0.25f), transform.position + (movement.targetDirection * baseJabAttackRange * weapon.jabAttackRangeModifier()), jabAttackRadius, 1 << LayerMask.NameToLayer("Enemy"));
 
 		foreach (Collider victim in hitColliders)
@@ -85,6 +91,8 @@ public class PlayerAttacks : MonoBehaviour
 
 	void SweepAttack(Weapon weapon)
 	{
+		animations.PlayAnim(CreatureAnimations.WeaponAnim.SWING, movement.targetDirection, attackCountDown);
+
 		Collider[] hitColliders = Physics.OverlapSphere(transform.position, baseSweepAttackRange * weapon.sweepAttackRangeModifier(), 1 << LayerMask.NameToLayer("Enemy"));
 
 		foreach (Collider victim in hitColliders)

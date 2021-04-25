@@ -24,11 +24,11 @@ public class PlayerMovement : MonoBehaviour
 		CharacterController controller = GetComponent<CharacterController>();
 
 		// Direction
-
 		Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-		if (Physics.Raycast(mouseRay,out RaycastHit hit, float.MaxValue, 1 << LayerMask.NameToLayer("Floor")))
+		if (Physics.Raycast(mouseRay, out RaycastHit hit, float.MaxValue, 1 << LayerMask.NameToLayer("Floor")))
 		{
+			targetPosition = hit.point;
 			mouseCursor.position = hit.point;
 		}
 
