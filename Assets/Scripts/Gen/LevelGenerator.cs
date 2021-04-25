@@ -138,7 +138,9 @@ public class LevelGenerator : MonoBehaviour
 			spawnPoint = new Vector2Int(levelSize / 2, levelSize / 2);
 		}
 
+		Player.inst.GetComponent<CharacterController>().enabled = false;
 		Player.inst.transform.position = new Vector3(spawnPoint.x, 0.0f, spawnPoint.y);
+		Player.inst.GetComponent<CharacterController>().enabled = true;
 		Camera.main.transform.parent.position = Player.inst.transform.position;
 
 

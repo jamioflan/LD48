@@ -50,6 +50,7 @@ public abstract class Creature : MonoBehaviour
 			damageNumberColour = Color.yellow;
 
 		UI.inst.SpawnDamageNumbers(Mathf.CeilToInt(damage), damageNumberColour, transform.position + new Vector3(0.5f, 1.5f, 0f));
+		UI.inst.SpawnHealthbar(this);
 
 		damage *= multiplier;
 

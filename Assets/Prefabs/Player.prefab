@@ -78,13 +78,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1
+  m_Radius: 0.3
   m_SlopeLimit: 0
   m_StepOffset: 0
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &3509571197435498458
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  maxHealth: 10
+  tempHealth: 0
+  tempHealthLoss: 0.05
   earthF: 1
   airF: 1
   fireF: 1
@@ -131,6 +134,7 @@ MonoBehaviour:
   selectedWeaponSlot: 0
   weaponOrigin: {fileID: 1606790852406973771}
   defaultSpells: []
+  defaultArmour: {fileID: 0}
 --- !u!114 &7003866201802873518
 MonoBehaviour:
   m_ObjectHideFlags: 0

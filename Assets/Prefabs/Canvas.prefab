@@ -679,6 +679,8 @@ MonoBehaviour:
   announcerSlideInTime: 0.5
   damageNumbersPrefab: {fileID: 19730889398749875, guid: a8dc45e4550e571419e29064f48ef1da,
     type: 3}
+  healthbarPrefab: {fileID: 335211395179062770, guid: efe4a4823dc3c4b44ab5daa7f2ec8436,
+    type: 3}
   shop: {fileID: 970448093}
   levelCompleteText: {fileID: 368208240}
   killsGrid: {fileID: 0}

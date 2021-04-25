@@ -9,11 +9,14 @@ public class PlayerMovement : MonoBehaviour
 	public Vector3 targetPosition = Vector3.zero;
 	public Transform mouseCursor = null;
 
+	private CreatureAnimations anims;
+
 	// Start is called before the first frame update
 	void Start()
     {
-        
-    }
+		anims = GetComponent<CreatureAnimations>();
+
+	}
 
     // Update is called once per frame
     void Update()
@@ -32,15 +35,18 @@ public class PlayerMovement : MonoBehaviour
 		// Movement
 		Vector3 motionVector = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
 
+		anims.SetMoving(motionVector.magnitude > 0.01f);
+
 		motionVector *= (moveSpeed * 10);
 
 		if (Input.GetKey(KeyCode.LeftShift))
 			motionVector *= sprintModifier;
 
-		motionVector *= Time.deltaTime;
+		motionVector.y = -1f;
 
+		motionVector *= Time.deltaTime;
 		controller.Move(motionVector);
-    }
+	}
 
 	public Vector3 targetDirection
 	{

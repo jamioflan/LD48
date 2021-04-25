@@ -15,10 +15,11 @@ public class UIAttackInfo : MonoBehaviour
 		{
 			nameText.text = "-Empty Slot-";
 			descText.text = "";
-			icon.sprite = null;
+			icon.enabled = false;
 		}
 		else
 		{
+			icon.enabled = true;
 			nameText.text = item.GetDisplayName();
 			if (descText)
 				descText.text = item.GetDescription();

@@ -21,9 +21,10 @@ public abstract class Spell : InventoryItem
 		spellDamage += spellDamagePerLevel * level;
 	}
 
-	void Start()
-	protected virtual void Start()
+	protected override void Start()
 	{
+		base.Start();
+
 		playerCaster = owner.GetComponent<Player>();
 		enemyCaster = owner.GetComponent<Enemy>();
 
@@ -31,8 +32,9 @@ public abstract class Spell : InventoryItem
 		isEnemyCaster = enemyCaster != null;
 	}
 
-	protected virtual void Update()
+	protected override void Update()
 	{
+		base.Update();
 		countDown = Mathf.Max(countDown - Time.deltaTime, 0.0f);
 	}
 

@@ -35,6 +35,7 @@ public class UI : MonoBehaviour
 
 	// Damage numbers
 	public DamageNumbers damageNumbersPrefab;
+	public UIHealthbar healthbarPrefab;
 
 	// End of Level Screen
 	public GameObject shop;
@@ -227,6 +228,18 @@ public class UI : MonoBehaviour
 		DamageNumbers numbers = Instantiate(damageNumbersPrefab);
 		numbers.transform.position = position;
 		numbers.Init(amount, colour);
+	}
+
+	public void SpawnHealthbar(Creature creature)
+	{
+		if (creature.GetComponentInChildren<UIHealthbar>() == null)
+		{
+			UIHealthbar hpBar = Instantiate(healthbarPrefab, Vector3.up, Quaternion.identity, creature.transform);
+			hpBar.transform.localPosition = new Vector3(0f, 1f, 0f);
+			hpBar.transform.localRotation = Quaternion.identity;
+			//hpBar.transform.localScale = Vector3.one;
+			hpBar.creature = creature;
+		}
 	}
 
 	// Start is called before the first frame update

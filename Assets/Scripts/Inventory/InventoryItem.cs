@@ -34,7 +34,7 @@ public abstract class InventoryItem : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	protected virtual void Update()
     {
         
     }
