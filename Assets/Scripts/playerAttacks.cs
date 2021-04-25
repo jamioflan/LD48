@@ -27,23 +27,26 @@ public class PlayerAttacks : MonoBehaviour
     {
 		Weapon weapon = inventory.GetWeaponInSlot(0);
 
-		if (attackCountDown <= 0.0f)
+		if (weapon != null)
 		{
-
-			if (Input.GetMouseButton(0))
+			if (attackCountDown <= 0.0f)
 			{
-				JabAttack(weapon);
-				attackCountDown = baseAttackCooldown * weapon.cooldownModifier();
+
+				if (Input.GetMouseButton(0))
+				{
+					JabAttack(weapon);
+					attackCountDown = baseAttackCooldown * weapon.cooldownModifier();
+				}
+
+				if (Input.GetMouseButton(1))
+				{
+					SweepAttack(weapon);
+					attackCountDown = baseAttackCooldown * weapon.cooldownModifier();
+				}
 			}
 
-			if (Input.GetMouseButton(1))
-			{
-				SweepAttack(weapon);
-				attackCountDown = baseAttackCooldown * weapon.cooldownModifier();
-			}
+			attackCountDown = Mathf.Max(attackCountDown - Time.deltaTime, 0.0f);
 		}
-
-		attackCountDown = Mathf.Max(attackCountDown - Time.deltaTime, 0.0f);
 	}
 
 	void JabAttack(Weapon weapon)
