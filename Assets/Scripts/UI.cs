@@ -39,6 +39,7 @@ public class UI : MonoBehaviour
 	// Damage numbers
 	public DamageNumbers damageNumbersPrefab;
 	public UIHealthbar healthbarPrefab;
+	public Image playerHealthBar;
 
 	// End of Level Screen
 	public GameObject shop;
@@ -325,6 +326,10 @@ public class UI : MonoBehaviour
 
 		// Currency
 		currencyText.text = "" + Game.inst.currency;
+
+		// Player HP
+		playerHealthBar.fillAmount = Mathf.Clamp01((Player.inst.health + Player.inst.tempHealth) / Player.inst.maxHealth);
+		playerHealthBar.color = Player.inst.tempHealth > 0.0f ? Color.yellow : Color.red;
 	}
 
 	float smoothstep(float edge0, float edge1, float x)

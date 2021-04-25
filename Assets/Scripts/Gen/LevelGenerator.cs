@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LevelGenerator : MonoBehaviour
 {
@@ -47,7 +48,10 @@ public class LevelGenerator : MonoBehaviour
 			bossName = "Fred",
 			enemies = new List<Transform>(),
 		};
+
+
 		int[,] wallTypes = new int[levelSize, levelSize];
+		List<NavMeshBuildSource> src = new List<NavMeshBuildSource>();
 
 		// Start with cave carving
 		for (int i = 0; i < levelSize; i++)
@@ -107,13 +111,36 @@ public class LevelGenerator : MonoBehaviour
 					case WALL_TYPE_BEDROCK:
 					{
 						walls[i, k] = Instantiate(assets.bedrockPrefab, new Vector3(i, -1f, k), Quaternion.identity, transform);
+						
 						break;
 					}
+				}
+
+				if(walls[i, k] != null)
+				{
+					MeshFilter mesh = walls[i, k].GetComponentInChildren<MeshFilter>();
+					src.Add(new NavMeshBuildSource()
+					{
+						area = 0,
+						shape = NavMeshBuildSourceShape.Mesh,
+						sourceObject = mesh.sharedMesh,
+						transform = mesh.transform.localToWorldMatrix,
+					});
 				}
 			}
 		}
 
 		floor = Instantiate(assets.floorPrefab, transform);
+		foreach (MeshFilter mf in floor.GetComponentsInChildren<MeshFilter>())
+		{
+			src.Add(new NavMeshBuildSource()
+			{
+				area = 0,
+				shape = NavMeshBuildSourceShape.Mesh,
+				sourceObject = mf.sharedMesh,
+				transform = mf.transform.localToWorldMatrix,
+			});
+		}
 
 		// Place player spawn pos - start at outer edge and work inwards
 		Vector2Int spawnPoint = Vector2Int.zero;
@@ -170,6 +197,14 @@ public class LevelGenerator : MonoBehaviour
 
 		UI.inst.Announce($"Level {level + 1} - {assets.displayName}");
 		UI.inst.SetLevelNameText($"Level {level + 1} - {assets.displayName}");
+
+		// 
+
+		
+		NavMeshBuildSettings settings = NavMesh.GetSettingsByIndex(0);
+		NavMeshData data = NavMeshBuilder.BuildNavMeshData(settings, src, new Bounds(Vector3.one * (levelSize / 2f) + Vector3.down, Vector3.one * levelSize), Vector3.zero, Quaternion.identity);
+		NavMesh.RemoveAllNavMeshData();
+		NavMesh.AddNavMeshData(data);
 	}
 
 	private void Spawn(LevelAssets.SpawnData spawn, int[,] map, Vector2Int playerSpawnPos)
