@@ -493,6 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood: {fileID: 1640332668}
+  fire: {fileID: 1655052254}
 --- !u!4 &1092653696
 Transform:
   m_ObjectHideFlags: 0

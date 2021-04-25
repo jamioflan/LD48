@@ -6,6 +6,13 @@ public class CreatureAnimations : MonoBehaviour
 {
 	public Transform body;
 
+	public enum WeaponAnim
+	{
+		NONE,
+		SWING,
+		STAB,
+	}
+
 	public float walkBobLR = 0.1f;
 	public float walkBobUD = 0.1f;
 	public float walkAnimSpeed = 6.0f;
@@ -19,6 +26,28 @@ public class CreatureAnimations : MonoBehaviour
 	private bool moving = false;
 	private float walkAnim = 0.0f;
 	private float idleAnim = 0.0f;
+
+	// Weapon anim
+	public Transform weaponTransform;
+
+	private WeaponAnim currentAnim = WeaponAnim.NONE;
+	private Vector3 directionOfAnim = Vector3.zero;
+	private float weaponAnimTime = 0.0f;
+	private float weaponAnimLength = 1.0f;
+	private Vector3 aimDirection = Vector3.zero;
+
+	public void PlayAnim(WeaponAnim type, Vector3 direction, float duration)
+	{
+		currentAnim = type;
+		weaponAnimTime = 0.0f;
+		weaponAnimLength = duration;
+		directionOfAnim = direction;
+	}
+
+	public void SetAimDirection(Vector3 direction)
+	{
+		aimDirection = direction;
+	}
 
 	public void SetMoving(bool b)
 	{
@@ -59,5 +88,31 @@ public class CreatureAnimations : MonoBehaviour
 			body.localEulerAngles = new Vector3(0f, 0f,
 				Mathf.Cos(idleAnim) * idleWobble);
 		}
-    }
+
+		if(currentAnim != WeaponAnim.NONE)
+		{
+			weaponAnimTime += Time.deltaTime;
+
+			if (weaponAnimTime >= weaponAnimLength)
+				currentAnim = WeaponAnim.NONE;
+		}
+
+		switch(currentAnim)
+		{
+			case WeaponAnim.NONE:
+			{
+				weaponTransform.localPosition = aimDirection;
+				break;
+			}
+			case WeaponAnim.STAB:
+			{
+				float t = weaponAnimTime / weaponAnimLength;
+
+				weaponTransform.localPosition = directionOfAnim * (1.0f + Mathf.Sin(t * Mathf.PI) * 1.0f);
+
+
+				break;
+			}
+		}
+	}
 }
