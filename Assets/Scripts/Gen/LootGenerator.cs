@@ -21,10 +21,20 @@ public class LootGenerator : MonoBehaviour
 		{
 			InventoryItem prefab = scaleableLootPrefabs[Random.Range(0, scaleableLootPrefabs.Count)];
 			InventoryItem instance = Instantiate(prefab);
+
+			// Apply level
 			int lootLevel = Random.Range(levelCompleted / 4, levelCompleted / 2 + 1);
 			instance.Scale(lootLevel);
 			instance.level = lootLevel;
 			instance.cost = Random.Range(instance.cost * lootLevel, instance.cost * (lootLevel + 1));
+
+			// Apply infusion
+			if (instance is Weapon weapon && Random.Range(0f, 1f) < 0.5f)
+			{
+				weapon.Infuse((DamageElement)Random.Range(0, (int)DamageElement.Spirit + 1));
+				instance.cost = Mathf.CeilToInt(instance.cost * 1.25f);
+			}
+			
 			instance.gameObject.SetActive(false);
 			result[i] = instance;
 		}

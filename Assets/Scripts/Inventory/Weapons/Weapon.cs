@@ -18,6 +18,17 @@ public abstract class Weapon : InventoryItem
 		damageModifier += damageModifierPerLevel * level;
 	}
 
+	public void Infuse(DamageElement element)
+	{
+		dElement = element;
+		damageModifier *= 0.75f;
+	}
+
+	public override string GetDisplayName()
+	{
+		return $"{dElement.ItemPrefix()}{displayName} {ToRoman(level + 1)}";
+	}
+
 	public override string GetDescription()
 	{
 		return $"{damageModifier} {dElement.ToString()} damage";

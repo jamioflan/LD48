@@ -40,6 +40,7 @@ public class Particles : MonoBehaviour
 			position = pos,
 			velocity = motion,
 			startColor = colour,
+			startLifetime = duration,
 		};
 		particles.Emit(par, count);
 	}

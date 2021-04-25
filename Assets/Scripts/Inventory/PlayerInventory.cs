@@ -139,7 +139,7 @@ public class PlayerInventory : MonoBehaviour
 						case DamageElement.Fire:
 						default:
 						{
-							Particles.inst.Emit(weaponOrigin.position + weaponOrigin.up * Random.Range(0f, 1f), weaponOrigin.up * 0.4f, 1.0f, 2.0f, Color.white, Particles.Type.FIRE, 1);
+							Particles.inst.Emit(weaponOrigin.position + weaponOrigin.up * Random.Range(0f, 0.5f), Vector3.up * 1.0f, 1.0f, 0.2f, Color.white, Particles.Type.FIRE, 1);
 							break;
 						}
 					}

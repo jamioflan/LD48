@@ -30,6 +30,20 @@ public enum Foible
 
 public static class FoibleExt
 {
+	public static string ItemPrefix(this DamageElement e)
+	{
+		switch(e)
+		{
+			case DamageElement.Air: return "Lofty ";
+			case DamageElement.Earth: return "Rock-Hewn ";
+			case DamageElement.Fire: return "Ignited ";
+			case DamageElement.Physical: return "";
+			case DamageElement.Spirit: return "Haunted ";
+			case DamageElement.Water: return "Soaked ";
+		}
+		return "";		
+	}
+
 	public static float DamageMultiplier(this Foible f)
 	{
 		switch (f)

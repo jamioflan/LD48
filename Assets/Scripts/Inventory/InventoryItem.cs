@@ -16,7 +16,7 @@ public abstract class InventoryItem : MonoBehaviour
 	}
 
 	public string displayName;
-	public string GetDisplayName()
+	public virtual string GetDisplayName()
 	{
 		return $"{displayName} {ToRoman(level + 1)}";
 	}
