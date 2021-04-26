@@ -47,5 +47,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 92e01a8fc26a2744d91b2140b36145f5, type: 2}
   - {fileID: 11400000, guid: 817b9defb41df394cb13800665c64100, type: 2}
   - {fileID: 11400000, guid: f5806f6506533fd4c932d38bc866ea66, type: 2}
+  - {fileID: 11400000, guid: 9b8191818d4ee7f488a0ae5d65895217, type: 2}
+  - {fileID: 11400000, guid: 27fddad272c538a4499417354ef1aa26, type: 2}
+  - {fileID: 11400000, guid: 52040c8a6be94254c96562e334898062, type: 2}
   levelSize: 64
   floor: {fileID: 0}
