@@ -10,7 +10,11 @@ public class TidalSurge : Spell
 		{
 			if (isPlayerCaster)
 			{
-				Enemy[] hitEnemies = GetComponents<Enemy>();
+				for (int i = 0; i < 100; i++)
+				{
+					Particles.inst.Emit(owner.transform.position + Vector3.up * 0.5f, Random.insideUnitSphere * 4.0f, 0.3f, Random.Range(0.3f, 0.5f), Color.white, Particles.Type.WATER, 1);
+				}
+				Enemy[] hitEnemies = FindObjectsOfType<Enemy>();
 
 				foreach (Enemy enemy in hitEnemies)
 				{
@@ -26,7 +30,7 @@ public class TidalSurge : Spell
 
 			if (isEnemyCaster)
 			{
-				Player[] players = GetComponents<Player>();
+				Player[] players = FindObjectsOfType<Player>();
 
 				foreach (Player player in players)
 				{
