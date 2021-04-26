@@ -47,7 +47,7 @@ MonoBehaviour:
   texture: {fileID: 2800000, guid: b9fa97c563cd796438dd1933d41d5893, type: 3}
   level: 0
   cost: 0
-  displayName: 
-  spellDamage: 1
-  spellDamagePerLevel: 0.5
-  description: Deals {0} damage to a target
+  displayName: Shield
+  spellDamage: 3
+  spellDamagePerLevel: 2
+  description: Gives you {0} temporary health for 2.5s

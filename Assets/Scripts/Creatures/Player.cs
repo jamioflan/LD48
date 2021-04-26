@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,18 @@ public class Player : Creature
 		DRUID,
 	}
 
-    void Awake()
+	public void Heal(float count)
+	{
+		// Increase HP
+		if (count + health > maxHealth)
+			count = maxHealth - health;
+
+		UI.inst.SpawnDamageNumbers(Mathf.CeilToInt(count), Color.green, transform.position);
+
+		health += count;
+	}
+
+	void Awake()
     {
 		inst = this;
 		movement = GetComponent<PlayerCapitalMovement>();
@@ -40,5 +52,23 @@ public class Player : Creature
 	protected override void Update()
     {
 		base.Update();
-    }
+
+		foreach(Collider coll in Physics.OverlapBox(transform.position, Vector3.one))
+		{
+			Pickup pickup = coll.GetComponent<Pickup>();
+			if (pickup != null)
+			{
+				switch (pickup.type)
+				{
+					case Pickup.Type.COIN:
+						Game.inst.AwardCurrency(pickup.count);
+						break;
+					case Pickup.Type.HEALTH:
+						Heal(pickup.count);
+						break;
+				}
+				Destroy(coll.gameObject);
+			}
+		}
+	}
 }

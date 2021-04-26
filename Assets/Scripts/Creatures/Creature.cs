@@ -58,7 +58,8 @@ public abstract class Creature : MonoBehaviour
 			damageNumberColour = Color.yellow;
 
 		UI.inst.SpawnDamageNumbers(Mathf.CeilToInt(damage), damageNumberColour, transform.position + new Vector3(0.5f, 1.5f, 0f));
-		UI.inst.SpawnHealthbar(this);
+		if(this is Enemy)
+			UI.inst.SpawnHealthbar(this);
 
 		for(int i = 0; i < 30; i++)
 			Particles.inst.Emit(transform.position + Vector3.up, 3f * ((transform.position - origin).normalized + Random.insideUnitSphere), 1.0f, 3.0f, bloodColour, Particles.Type.BLOOD, 1);

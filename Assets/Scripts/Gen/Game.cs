@@ -16,6 +16,7 @@ public class Game : MonoBehaviour
 	public State state = State.CHOOSE_CHARACTER;
 	public int level = -1;
 	public int currency;
+	public Pickup coinPrefab, healthPrefab;
 
 	private void Awake()
 	{
@@ -27,6 +28,16 @@ public class Game : MonoBehaviour
     {
 		//UI.ShowCharacterSelection();
     }
+
+	public void DropPickup(Pickup.Type type, Vector3 pos, int count)
+	{
+		Pickup prefab = type == Pickup.Type.COIN ? coinPrefab : healthPrefab;
+
+		Pickup pickup = Instantiate(prefab);
+		pickup.transform.position = pos;
+
+		pickup.count = count;
+	}
 
 	public void AwardCurrency(int x)
 	{

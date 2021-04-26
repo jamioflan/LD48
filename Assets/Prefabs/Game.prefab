@@ -45,3 +45,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   level: -1
+  currency: 0
+  coinPrefab: {fileID: 2850849183986543731, guid: 9df8a74e1f51d26419e1ffce7d5e0d02,
+    type: 3}
+  healthPrefab: {fileID: 2850849183986543731, guid: fb11ead47edfae14e928189db0b26601,
+    type: 3}

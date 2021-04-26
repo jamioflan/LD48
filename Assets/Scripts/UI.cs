@@ -12,16 +12,7 @@ public class UI : MonoBehaviour
 
 	// Slots
 	public UIAttackInfo[] weaponInfos = new UIAttackInfo[0];
-
-	// Magic Slots
-	[System.Serializable]
-	public class MagicItemSlot
-	{
-		public Text magicItemName;
-		public Image magicItemSprite;
-		public Image magicItemCooldown;
-	}
-	public MagicItemSlot[] magicInfo = new MagicItemSlot[0];
+	public UIAttackInfo[] magicInfos = new UIAttackInfo[0];
 
 	// Announcer
 	public RectTransform announcer;
@@ -365,6 +356,20 @@ public class UI : MonoBehaviour
 				weaponInfos[i].SetItem(weapon);
 				weaponInfos[i].SetSelected(Player.inst.inventory.selectedWeaponSlot == i);
 				weaponInfos[i].SetCooldown(Player.inst.attacks.GetAttackCooldownParametric());
+			}
+		}
+		for (int i = 0; i < magicInfos.Length; i++)
+		{
+			Spell magic = Player.inst.inventory.GetSpellInSlot(i);
+			if (magic == null)
+			{
+				magicInfos[i].SetItem(null);
+			}
+			else
+			{
+				magicInfos[i].SetItem(magic);
+				magicInfos[i].SetSelected(true);
+				magicInfos[i].SetCooldown(magic.GetParametricCooldown());
 			}
 		}
 

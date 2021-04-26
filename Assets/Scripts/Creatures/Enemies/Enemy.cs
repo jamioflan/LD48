@@ -6,6 +6,8 @@ using UnityEngine.AI;
 public class Enemy : Creature
 {
 	public int treasure = 1;
+	public Pickup.Type pickupType;
+	public float maxTreasurePerLevel = 0.5f;
 	public float detectionRange = 10.0f;
 	public float moveSpeed = 2.0f;
 	public float attackRange = 1.0f;
@@ -81,6 +83,9 @@ public class Enemy : Creature
 
 	public override void Die()
 	{
+		float coinRoll = Random.Range(treasure, treasure * (1 + maxTreasurePerLevel * LevelGenerator.inst.currentLevel.levelNumber));
+		Game.inst.DropPickup(pickupType, transform.position, Mathf.RoundToInt(coinRoll));
+
 		Destroy(gameObject);
 	}
 

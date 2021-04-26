@@ -16,6 +16,11 @@ public abstract class Spell : InventoryItem
 
 	public abstract void CastSpell(Vector3 target);
 
+	public float GetParametricCooldown()
+	{
+		return countDown / cooldownTimer;
+	}
+
 	public override void Scale(int level)
 	{
 		spellDamage += spellDamagePerLevel * level;

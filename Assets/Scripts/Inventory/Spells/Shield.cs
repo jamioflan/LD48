@@ -24,7 +24,10 @@ public class Shield : Spell
 		shieldCountDown = Mathf.Max(shieldCountDown - Time.deltaTime, 0.0f);
 
 		if (shieldActive && shieldCountDown <= 0)
+		{
 			shieldActive = false;
+			owner.tempHealth = 0.0f;
+		}
 	}
 
 	public override void CastSpell(Vector3 target)
@@ -34,6 +37,7 @@ public class Shield : Spell
 			shieldActive = true;
 			shieldCountDown = shieldDuration;
 			countDown = cooldownTimer;
+			owner.tempHealth += spellDamage;
 		}
 	}
 

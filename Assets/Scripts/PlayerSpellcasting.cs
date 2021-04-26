@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSpells : MonoBehaviour
+public class PlayerSpellcasting : MonoBehaviour
 {
+	public GameObject shieldObject;
 
 	PlayerCapitalMovement movement = null;
 	PlayerInventory inventory = null;
@@ -31,5 +32,17 @@ public class PlayerSpells : MonoBehaviour
 		{
 			playerSpellB.CastSpell(movement.targetPosition);
 		}
+
+		if (playerSpellA is Shield shieldA)
+		{
+			shieldObject.SetActive(shieldA.GetShieldActive());
+		}
+		else if (playerSpellB is Shield shieldB)
+		{
+			shieldObject.SetActive(shieldB.GetShieldActive());
+		}
+		else shieldObject.SetActive(false);
+
+		shieldObject.transform.localScale = Vector3.one * (0.2f * Mathf.Sin(Time.time) + 1.2f);
 	}
 }
