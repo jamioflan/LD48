@@ -9,6 +9,7 @@ public abstract class InventoryItem : MonoBehaviour
 	public Texture2D texture;
 	public int level;
 	public int cost;
+	public AudioSource sfx;
 
 	public Texture2D GetTexture()
 	{
@@ -35,6 +36,8 @@ public abstract class InventoryItem : MonoBehaviour
 			mr.sharedMaterial = new Material(mr.sharedMaterial);
 			mr.sharedMaterial.mainTexture = texture;
 		}
+
+		sfx = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame

@@ -25,7 +25,7 @@ public class Enemy : Creature
 	// Start is called before the first frame update
 	protected override void Start()
     {
-		base.Update();
+		base.Start();
 		agent = GetComponent<NavMeshAgent>();
 		agent.speed = moveSpeed;
 	}

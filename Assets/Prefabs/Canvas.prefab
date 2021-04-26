@@ -1490,7 +1490,7 @@ GameObject:
   - component: {fileID: 1556344016}
   - component: {fileID: 1556344015}
   m_Layer: 5
-  m_Name: Image
+  m_Name: PlayerHP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2590,6 +2590,7 @@ MonoBehaviour:
     type: 3}
   healthbarPrefab: {fileID: 335211395179062770, guid: efe4a4823dc3c4b44ab5daa7f2ec8436,
     type: 3}
+  playerHealthbarObject: {fileID: 1556344013}
   playerHealthBar: {fileID: 1537754185}
   bossHealthBarObject: {fileID: 6079529215959990923}
   bossHealthBar: {fileID: 3219178663281616137}

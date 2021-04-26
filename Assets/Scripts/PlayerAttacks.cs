@@ -51,14 +51,16 @@ public class PlayerAttacks : MonoBehaviour
 					{
 						attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
 						JabAttack(equippedWeapon);
-
+						if (equippedWeapon.sfx != null)
+							equippedWeapon.sfx.Play();
 					}
 
 					if (Input.GetMouseButton(1))
 					{
 						attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
 						SweepAttack(equippedWeapon);
-
+						if (equippedWeapon.sfx != null)
+							equippedWeapon.sfx.Play();
 					}
 				}
 

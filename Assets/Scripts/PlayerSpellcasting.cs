@@ -29,10 +29,14 @@ public class PlayerSpellcasting : MonoBehaviour
 			if (Input.GetKey(KeyCode.Q) && playerSpellA != null)
 			{
 				playerSpellA.CastSpell(movement.targetPosition);
+				if (playerSpellA.sfx != null)
+					playerSpellA.sfx.Play();
 			}
 			if (Input.GetKey(KeyCode.E) && playerSpellB != null)
 			{
 				playerSpellB.CastSpell(movement.targetPosition);
+				if (playerSpellB.sfx != null)
+					playerSpellB.sfx.Play();
 			}
 
 			if (playerSpellA is Shield shieldA)

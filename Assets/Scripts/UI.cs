@@ -30,6 +30,7 @@ public class UI : MonoBehaviour
 	// Damage numbers
 	public DamageNumbers damageNumbersPrefab;
 	public UIHealthbar healthbarPrefab;
+	public GameObject playerHealthbarObject;
 	public Image playerHealthBar;
 	public GameObject bossHealthBarObject;
 	public Image bossHealthBar;
@@ -387,6 +388,7 @@ public class UI : MonoBehaviour
 		currencyText.text = "" + Game.inst.currency;
 
 		// Player HP
+		playerHealthbarObject.SetActive(Game.inst.state == Game.State.IN_LEVEL);
 		playerHealthBar.fillAmount = Mathf.Clamp01((Player.inst.health + Player.inst.tempHealth) / Player.inst.maxHealth);
 		playerHealthBar.color = Player.inst.tempHealth > 0.0f ? Color.yellow : Color.red;
 

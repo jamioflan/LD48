@@ -28,12 +28,14 @@ public abstract class Creature : MonoBehaviour
 	// For the end hole
 	public GameObject setActiveOnDeath = null;
 
+	private AudioSource audioSrc;
 
 	// Start is called before the first frame update
 	protected virtual void Start()
     {
 		if (health <= 0.0f)
 			Die();
+		audioSrc = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame
@@ -67,7 +69,12 @@ public abstract class Creature : MonoBehaviour
 		if(this is Enemy)
 			UI.inst.SpawnHealthbar(this);
 
-		for(int i = 0; i < 30; i++)
+		if (audioSrc != null)
+			audioSrc.Play();
+
+
+
+		for (int i = 0; i < 30; i++)
 			Particles.inst.Emit(transform.position + Vector3.up, 3f * ((transform.position - origin).normalized + Random.insideUnitSphere), 0.1f, 3.0f, bloodColour, Particles.Type.BLOOD, 1);
 
 		damage *= multiplier;

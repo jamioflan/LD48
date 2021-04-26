@@ -15,6 +15,7 @@ public class Player : Creature
 	public PlayerCapitalMovement movement;
 	public PlayerAttacks attacks;
 	public PlayerInventory inventory;
+	public AudioSource pickupSFX, levelupSFX;
 
 	public enum Character
 	{
@@ -62,6 +63,7 @@ public class Player : Creature
 				{
 					case Pickup.Type.COIN:
 						Game.inst.AwardCurrency(pickup.count);
+						pickupSFX.Play();
 						break;
 					case Pickup.Type.HEALTH:
 						Heal(pickup.count);
@@ -72,6 +74,7 @@ public class Player : Creature
 
 			if(coll.GetComponent<Hole>())
 			{
+				levelupSFX.Play();
 				Game.inst.EnteredHole();
 			}
 
