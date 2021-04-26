@@ -16,7 +16,7 @@ public class Enemy : Creature
 	public DamageType dType = DamageType.Crushing;
 	public DamageElement dElement = DamageElement.Physical;
 
-	protected Player target = null;
+	public Player target = null;
 
 	float detectionCountDown = 0.0f;
 	float attackCountDown = 0.0f;

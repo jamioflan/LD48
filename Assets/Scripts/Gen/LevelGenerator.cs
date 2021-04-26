@@ -72,7 +72,7 @@ public class LevelGenerator : MonoBehaviour
 		// Then build the route
 		int x = levelSize / 2;
 		int z = levelSize / 2;
-		BuildRoom(x, z, wallTypes, assets.roomBudget, assets.hallwayLength);
+		BuildRoom(x, z, wallTypes, assets.roomBudget, assets.hallwayLength, assets.minRoomSize, assets.maxRoomSize);
 
 		// Place boundaries
 		for (int i = 0; i < levelSize; i++)
@@ -195,21 +195,106 @@ public class LevelGenerator : MonoBehaviour
 			while (pick >= 0.0f && index < assets.regularSpawns.Count);
 		}
 
+		// Place an exit hole / boss spawn
+		Dictionary<Vector2Int, int> connected = new Dictionary<Vector2Int, int>();
+		connected.Add(spawnPoint, 0);
+		int furthestExplored = Explore(connected, spawnPoint, wallTypes, 0);
+
+		// Go a good distance from the player
+		int target = furthestExplored * 3 / 4;
+		Vector2Int targetPos = Vector2Int.zero;
+		foreach(var kvp in connected)
+		{
+			if(kvp.Value >= target)
+			{
+				targetPos = kvp.Key;
+				break;
+			}
+		}
+
+		Transform hole = Instantiate(assets.holePrefab, new Vector3(targetPos.x + 0.5f, 0, targetPos.y + 0.5f), Quaternion.identity, transform);
+		currentLevel.enemies.Add(hole);
 		UI.inst.Announce($"Level {level + 1} - {assets.displayName}");
+
+		if (assets.spawnBoss)
+		{
+			Spawn(assets.bossData, wallTypes, spawnPoint, forceSpawn:true);
+			currentLevel.bossName = LootGenerator.inst.GetBossName(assets.bossData.name, level / 3);
+			UI.inst.Announce($@"Level {level + 1} - {assets.displayName}");
+			currentLevel.boss = currentLevel.enemies[currentLevel.enemies.Count - 1];
+
+			hole.gameObject.SetActive(false);
+			currentLevel.boss.GetComponent<Creature>().setActiveOnDeath = hole.gameObject;
+		}
+		else
+		{
+			
+		}
+
 		UI.inst.SetLevelNameText($"Level {level + 1} - {assets.displayName}");
 
-		// 
+		RenderSettings.fogDensity = 0.2f + 0.01f * level;
 
-		
 		NavMeshBuildSettings settings = NavMesh.GetSettingsByIndex(0);
 		NavMeshData data = NavMeshBuilder.BuildNavMeshData(settings, src, new Bounds(Vector3.one * (levelSize / 2f) + Vector3.down, Vector3.one * levelSize), Vector3.zero, Quaternion.identity);
 		NavMesh.RemoveAllNavMeshData();
 		NavMesh.AddNavMeshData(data);
 	}
 
-	private void Spawn(LevelAssets.SpawnData spawn, int[,] map, Vector2Int playerSpawnPos)
+	private int Explore(Dictionary<Vector2Int, int> connected, Vector2Int pos, int[,] map, int distance)
 	{
-		int attempts = 100;
+		int furthestExplored = distance;
+
+		// +x
+		if(map[pos.x + 1,pos.y] == WALL_TYPE_EMPTY)
+		{
+			Vector2Int newPos = new Vector2Int(pos.x + 1, pos.y);
+			if (!connected.ContainsKey(newPos))
+			{
+				connected.Add(newPos, distance + 1);
+				furthestExplored = Mathf.Max(furthestExplored, Explore(connected, newPos, map, distance + 1));
+			}
+		}
+
+		// -x
+		if (map[pos.x - 1, pos.y] == WALL_TYPE_EMPTY)
+		{
+			Vector2Int newPos = new Vector2Int(pos.x - 1, pos.y);
+			if (!connected.ContainsKey(newPos))
+			{
+				connected.Add(newPos, distance + 1);
+				furthestExplored = Mathf.Max(furthestExplored, Explore(connected, newPos, map, distance + 1));
+			}
+		}
+
+		// +y
+		if (map[pos.x, pos.y + 1] == WALL_TYPE_EMPTY)
+		{
+			Vector2Int newPos = new Vector2Int(pos.x, pos.y + 1);
+			if (!connected.ContainsKey(newPos))
+			{
+				connected.Add(newPos, distance + 1);
+				furthestExplored = Mathf.Max(furthestExplored, Explore(connected, newPos, map, distance + 1));
+			}
+		}
+
+		// -y
+		if (map[pos.x, pos.y - 1] == WALL_TYPE_EMPTY)
+		{
+			Vector2Int newPos = new Vector2Int(pos.x, pos.y - 1);
+			if (!connected.ContainsKey(newPos))
+			{
+				connected.Add(newPos, distance + 1);
+				furthestExplored = Mathf.Max(furthestExplored, Explore(connected, newPos, map, distance + 1));
+			}
+		}
+
+		return furthestExplored;
+	}
+
+	private void Spawn(LevelAssets.SpawnData spawn, int[,] map, Vector2Int playerSpawnPos, bool forceSpawn = false)
+	{
+		int attempts = 300;
 		bool found = false;
 		while(!found && attempts > 0)
 		{
@@ -221,7 +306,7 @@ public class LevelGenerator : MonoBehaviour
 			if (map[x, y] != WALL_TYPE_EMPTY)
 				continue;
 
-			if (Vector2Int.Distance(playerSpawnPos, new Vector2Int(x, y)) < 8f)
+			if (Vector2Int.Distance(playerSpawnPos, new Vector2Int(x, y)) < 6f)
 				continue;
 
 			found = true;
@@ -232,6 +317,13 @@ public class LevelGenerator : MonoBehaviour
 				Transform enemy = Instantiate(spawn.prefab, new Vector3(x + 0.5f, 0.0f, y + 0.5f), Quaternion.identity, transform);
 				currentLevel.enemies.Add(enemy);
 			}
+		}
+
+		Debug.LogWarning("Failed to spawn enemy");
+		if(!found && forceSpawn)
+		{
+			Transform enemy = Instantiate(spawn.prefab, new Vector3(32f, 0.0f, 32f), Quaternion.identity, transform);
+			currentLevel.enemies.Add(enemy);
 		}
 	}
 
@@ -261,10 +353,10 @@ public class LevelGenerator : MonoBehaviour
 		}
 	}
 
-	private void BuildRoom(int x, int z, int[,] map, int budgetLeft, float hallwayLength)
+	private void BuildRoom(int x, int z, int[,] map, int budgetLeft, float hallwayLength, int minSize, int maxSize)
 	{
-		int width = Random.Range(9, 15);
-		int height = Random.Range(9, 17);
+		int width = Random.Range(minSize, maxSize);
+		int height = Random.Range(minSize, maxSize);
 
 		PlaceRoom(x, z, width, height, map);
 
@@ -305,7 +397,7 @@ public class LevelGenerator : MonoBehaviour
 				}
 
 				PlaceRoom((newX + x) / 2, (newZ + z) / 2, Mathf.Abs(newX - x) + 4, Mathf.Abs(newZ - z) + 4, map);
-				BuildRoom(newX, newZ, map, budgetEach, hallwayLength);
+				BuildRoom(newX, newZ, map, budgetEach, hallwayLength, minSize, maxSize);
 			}
 		}
 	}

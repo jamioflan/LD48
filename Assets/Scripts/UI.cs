@@ -31,6 +31,9 @@ public class UI : MonoBehaviour
 	public DamageNumbers damageNumbersPrefab;
 	public UIHealthbar healthbarPrefab;
 	public Image playerHealthBar;
+	public GameObject bossHealthBarObject;
+	public Image bossHealthBar;
+	public Text bossName;
 
 	// End of Level Screen
 	public GameObject shop;
@@ -47,6 +50,7 @@ public class UI : MonoBehaviour
 	public int selectedArmourSlot = -1;
 
 	public Text shopTutorial;
+	public RectTransform nextLevel;
 
 	// Character Select Screen
 	public GameObject characterSelectScreen;
@@ -65,7 +69,7 @@ public class UI : MonoBehaviour
 	{
 		shop.SetActive(true);
 
-		levelCompleteText.text = $@"- Level {levelCompleted.levelNumber} Complete -
+		levelCompleteText.text = $@"- Level {levelCompleted.levelNumber + 1} Complete -
 {levelCompleted.levelName}
 ";
 
@@ -229,6 +233,7 @@ public class UI : MonoBehaviour
 	public void CloseShop()
 	{
 		shop.SetActive(false);
+		Game.inst.FinishedShopping();
 	}
 	// 
 
@@ -264,8 +269,8 @@ public class UI : MonoBehaviour
 	{
 		if (creature.GetComponentInChildren<UIHealthbar>() == null)
 		{
-			UIHealthbar hpBar = Instantiate(healthbarPrefab, Vector3.up, Quaternion.identity, creature.transform);
-			hpBar.transform.localPosition = new Vector3(0f, 1f, 0f);
+			UIHealthbar hpBar = Instantiate(healthbarPrefab, Vector3.up * creature.hpbarheight, Quaternion.identity, creature.transform);
+			hpBar.transform.localPosition = new Vector3(0f, creature.hpbarheight, 0f);
 			hpBar.transform.localRotation = Quaternion.identity;
 			//hpBar.transform.localScale = Vector3.one;
 			hpBar.creature = creature;
@@ -373,12 +378,34 @@ public class UI : MonoBehaviour
 			}
 		}
 
+		nextLevel.localScale = Vector3.one * (0.9f + 0.1f * Mathf.Sin(Time.time));
+		nextLevel.localEulerAngles = new Vector3(0f, 0f, Mathf.Cos(Time.time) * 10f);
+
+
+
 		// Currency
 		currencyText.text = "" + Game.inst.currency;
 
 		// Player HP
 		playerHealthBar.fillAmount = Mathf.Clamp01((Player.inst.health + Player.inst.tempHealth) / Player.inst.maxHealth);
 		playerHealthBar.color = Player.inst.tempHealth > 0.0f ? Color.yellow : Color.red;
+
+		// Boss HP
+		bossHealthBarObject.SetActive(false);
+		if (LevelGenerator.inst.currentLevel != null)
+		{
+			if(LevelGenerator.inst.currentLevel.boss != null)
+			{
+				Creature boss = LevelGenerator.inst.currentLevel.boss.GetComponent<Creature>();
+				if (boss != null)
+				{
+					bossHealthBarObject.SetActive(true);
+					bossName.text = LevelGenerator.inst.currentLevel.bossName;
+					bossHealthBar.fillAmount = Mathf.Clamp01((boss.health + boss.tempHealth) / boss.maxHealth);
+				}
+
+			}
+		}
 	}
 
 	float smoothstep(float edge0, float edge1, float x)

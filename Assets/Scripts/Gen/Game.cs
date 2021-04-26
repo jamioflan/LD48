@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,6 +69,7 @@ public class Game : MonoBehaviour
 	{
 		if(state == State.IN_SHOP)
 		{
+			Player.inst.Heal(1000);
 			state = State.IN_LEVEL;
 			NextLevel();
 		}
@@ -85,19 +87,19 @@ public class Game : MonoBehaviour
 			}
 			case State.IN_LEVEL:
 			{
-				bool anyEnemiesLeft = false;
-				foreach(Transform t in LevelGenerator.inst.currentLevel.enemies)
-				{
-					if(t != null)
-					{
-						anyEnemiesLeft = true;
-					}
-				}
-				if(!anyEnemiesLeft)
-				{
-					state = State.IN_SHOP;
-					UI.inst.OpenShop(LevelGenerator.inst.currentLevel);
-				}
+				//bool anyEnemiesLeft = false;
+				//foreach(Transform t in LevelGenerator.inst.currentLevel.enemies)
+				//{
+				//	if(t != null)
+				//	{
+				//		anyEnemiesLeft = true;
+				//	}
+				//}
+				//if(!anyEnemiesLeft)
+				//{
+				//	state = State.IN_SHOP;
+				//	UI.inst.OpenShop(LevelGenerator.inst.currentLevel);
+				//}
 				break;
 			}
 			case State.IN_SHOP:
@@ -107,4 +109,15 @@ public class Game : MonoBehaviour
 			}
 		}
     }
+
+	public void EnteredHole()
+	{
+		if (state == State.IN_LEVEL)
+		{
+			state = State.IN_SHOP;
+			UI.inst.OpenShop(LevelGenerator.inst.currentLevel);
+
+			LevelGenerator.inst.DeleteLevel();
+		}
+	}
 }

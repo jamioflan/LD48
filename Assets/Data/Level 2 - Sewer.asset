@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ca245a79de7ae46b2234c5e9b0c456, type: 3}
+  m_Name: Level 2 - Sewer
+  m_EditorClassIdentifier: 
+  displayName: Crumbling Sewer
+  wallPrefab: {fileID: 6462806315288307877, guid: 8d958074d3ea2d745a8ac01d67893d71,
+    type: 3}
+  bedrockPrefab: {fileID: 6462806315288307877, guid: 17fc6ef483b9c2547addf5b1f9a4a516,
+    type: 3}
+  rockPrefab: {fileID: 6462806315288307877, guid: 0f093fea54a9f8b4cad308ff02a5601a,
+    type: 3}
+  holePrefab: {fileID: 4855721237675872889, guid: f39109d2b793d984290bf36fa2107b21,
+    type: 3}
+  floorPrefab: {fileID: 7039694403557694258, guid: ed2e0378ac8d23a45b4e65d1a6d4bcb1,
+    type: 3}
+  caveness: 0
+  roomBudget: 4
+  hallwayLength: 1.5
+  minRoomSize: 7
+  maxRoomSize: 13
+  regularSpawns:
+  - prefab: {fileID: 3716923563317774853, guid: 349022c60dbaec845823170db8eec13e,
+      type: 3}
+    spawnWeight: 1
+    minNumPerGroup: 1
+    maxNumPerGroup: 2
+  numToSpawn: 4
+  spawnBoss: 0
+  bossData:
+    prefab: {fileID: 0}
+    spawnWeight: 1
+    minNumPerGroup: 1
+    maxNumPerGroup: 3

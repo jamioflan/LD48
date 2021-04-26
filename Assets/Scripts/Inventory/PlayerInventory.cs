@@ -137,9 +137,28 @@ public class PlayerInventory : MonoBehaviour
 					switch(weapon.dElement)
 					{
 						case DamageElement.Fire:
-						default:
+						{ 
+							Particles.inst.Emit(weaponOrigin.position + weaponOrigin.up * Random.Range(0f, 0.5f), Vector3.up * 1.0f, 0.1f, 0.2f, Color.white, Particles.Type.FIRE, 1);
+							break;
+						}
+						
+						case DamageElement.Water:
 						{
-							Particles.inst.Emit(weaponOrigin.position + weaponOrigin.up * Random.Range(0f, 0.5f), Vector3.up * 1.0f, 1.0f, 0.2f, Color.white, Particles.Type.FIRE, 1);
+							Particles.inst.Emit(weaponOrigin.position + weaponOrigin.up * Random.Range(0f, 0.5f), Random.insideUnitSphere * 0.1f, 0.05f, 3.0f, Color.cyan, Particles.Type.WATER, 1);
+							break;
+						}
+						
+						case DamageElement.Earth:
+						{
+							if(Random.Range(0f, 1f) <= 0.07f)
+								Particles.inst.Emit(weaponOrigin.position + weaponOrigin.up * Random.Range(0f, 0.5f), Random.insideUnitSphere * 0.3f, 0.2f, 2.0f, Color.white, Particles.Type.ROCK, 1);
+							break;
+						}
+						case DamageElement.Spirit:
+						{
+							if (Random.Range(0f, 1f) <= 0.07f)
+								Particles.inst.Emit(weaponOrigin.position + weaponOrigin.up * Random.Range(0f, 0.5f), Random.insideUnitSphere * 0.3f, 0.2f, 2.0f, Color.white, Particles.Type.SPIRIT, 1);
+
 							break;
 						}
 					}

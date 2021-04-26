@@ -9,4 +9,5 @@ public class LevelData
 	public List<Transform> enemies;
 	public string levelName;
 	public string bossName;
+	public Transform boss;
 }

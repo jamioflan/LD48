@@ -45,5 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levels:
   - {fileID: 11400000, guid: 92e01a8fc26a2744d91b2140b36145f5, type: 2}
+  - {fileID: 11400000, guid: 817b9defb41df394cb13800665c64100, type: 2}
+  - {fileID: 11400000, guid: f5806f6506533fd4c932d38bc866ea66, type: 2}
   levelSize: 64
   floor: {fileID: 0}

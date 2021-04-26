@@ -47,6 +47,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   texture: {fileID: 2800000, guid: 74aa3192a0d430146871bba7edef9763, type: 3}
   level: 0
+  cost: 2
   displayName: Hefty Brick
   dElement: 4
   damageModifier: 3

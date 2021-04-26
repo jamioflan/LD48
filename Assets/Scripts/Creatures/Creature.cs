@@ -24,6 +24,10 @@ public abstract class Creature : MonoBehaviour
 	protected float hitTimeDelay = 0.5f;
 	protected float hitTimeCountdown = 0.0f;
 
+	public float hpbarheight = 1.0f;
+	// For the end hole
+	public GameObject setActiveOnDeath = null;
+
 
 	// Start is called before the first frame update
 	protected virtual void Start()
@@ -43,6 +47,8 @@ public abstract class Creature : MonoBehaviour
 
 	public virtual void Die()
 	{
+		if(setActiveOnDeath != null)
+			setActiveOnDeath.SetActive(true);
 		Destroy(gameObject);
 	}
 
@@ -62,7 +68,7 @@ public abstract class Creature : MonoBehaviour
 			UI.inst.SpawnHealthbar(this);
 
 		for(int i = 0; i < 30; i++)
-			Particles.inst.Emit(transform.position + Vector3.up, 3f * ((transform.position - origin).normalized + Random.insideUnitSphere), 1.0f, 3.0f, bloodColour, Particles.Type.BLOOD, 1);
+			Particles.inst.Emit(transform.position + Vector3.up, 3f * ((transform.position - origin).normalized + Random.insideUnitSphere), 0.1f, 3.0f, bloodColour, Particles.Type.BLOOD, 1);
 
 		damage *= multiplier;
 

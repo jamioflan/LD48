@@ -21,28 +21,31 @@ public class PlayerSpellcasting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		playerSpellA = inventory.GetSpellInSlot(0);
-		playerSpellB = inventory.GetSpellInSlot(1);
+		if (Game.inst.state == Game.State.IN_LEVEL)
+		{
+			playerSpellA = inventory.GetSpellInSlot(0);
+			playerSpellB = inventory.GetSpellInSlot(1);
 
-        if (Input.GetKey(KeyCode.Q) && playerSpellA != null)
-		{
-			playerSpellA.CastSpell(movement.targetPosition);
-		}
-		if (Input.GetKey(KeyCode.E) && playerSpellB != null)
-		{
-			playerSpellB.CastSpell(movement.targetPosition);
-		}
+			if (Input.GetKey(KeyCode.Q) && playerSpellA != null)
+			{
+				playerSpellA.CastSpell(movement.targetPosition);
+			}
+			if (Input.GetKey(KeyCode.E) && playerSpellB != null)
+			{
+				playerSpellB.CastSpell(movement.targetPosition);
+			}
 
-		if (playerSpellA is Shield shieldA)
-		{
-			shieldObject.SetActive(shieldA.GetShieldActive());
-		}
-		else if (playerSpellB is Shield shieldB)
-		{
-			shieldObject.SetActive(shieldB.GetShieldActive());
-		}
-		else shieldObject.SetActive(false);
+			if (playerSpellA is Shield shieldA)
+			{
+				shieldObject.SetActive(shieldA.GetShieldActive());
+			}
+			else if (playerSpellB is Shield shieldB)
+			{
+				shieldObject.SetActive(shieldB.GetShieldActive());
+			}
+			else shieldObject.SetActive(false);
 
-		shieldObject.transform.localScale = Vector3.one * (0.2f * Mathf.Sin(Time.time) + 1.2f);
+			shieldObject.transform.localScale = Vector3.one * (0.2f * Mathf.Sin(Time.time) + 1.2f);
+		}
 	}
 }

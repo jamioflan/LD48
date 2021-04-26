@@ -38,29 +38,32 @@ public class PlayerAttacks : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-		equippedWeapon = inventory.GetWeaponInSlot(0);
-
-		if (equippedWeapon != null)
+		if (Game.inst.state == Game.State.IN_LEVEL)
 		{
-			if (attackCountDown <= 0.0f)
+			equippedWeapon = inventory.GetWeaponInSlot(0);
+
+			if (equippedWeapon != null)
 			{
-
-				if (Input.GetMouseButton(0))
+				if (attackCountDown <= 0.0f)
 				{
-					attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
-					JabAttack(equippedWeapon);
-					
+
+					if (Input.GetMouseButton(0))
+					{
+						attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
+						JabAttack(equippedWeapon);
+
+					}
+
+					if (Input.GetMouseButton(1))
+					{
+						attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
+						SweepAttack(equippedWeapon);
+
+					}
 				}
 
-				if (Input.GetMouseButton(1))
-				{
-					attackCountDownTotal = attackCountDown = baseAttackCooldown * equippedWeapon.cooldownModifier();
-					SweepAttack(equippedWeapon);
-					
-				}
+				attackCountDown = Mathf.Max(attackCountDown - Time.deltaTime, 0.0f);
 			}
-
-			attackCountDown = Mathf.Max(attackCountDown - Time.deltaTime, 0.0f);
 		}
 	}
 

@@ -69,6 +69,22 @@ public class Player : Creature
 				}
 				Destroy(coll.gameObject);
 			}
+
+			if(coll.GetComponent<Hole>())
+			{
+				Game.inst.EnteredHole();
+			}
+
+			SkullBossHand hand = coll.GetComponent<SkullBossHand>();
+			if (hand != null)
+			{
+				if (hand.canAttackPlayer)
+				{
+					SufferDamage(hand.boss.enemy.attackDamage, hand.boss.enemy.dType, hand.boss.enemy.dElement, hand.transform.position);
+					hand.canAttackPlayer = false;
+				}
+			}
 		}
 	}
+
 }

@@ -19,6 +19,8 @@ MonoBehaviour:
     type: 3}
   rockPrefab: {fileID: 6462806315288307877, guid: 0f093fea54a9f8b4cad308ff02a5601a,
     type: 3}
+  holePrefab: {fileID: 4855721237675872889, guid: f39109d2b793d984290bf36fa2107b21,
+    type: 3}
   floorPrefab: {fileID: 7039694403557694258, guid: ed2e0378ac8d23a45b4e65d1a6d4bcb1,
     type: 3}
   caveness: 0.6

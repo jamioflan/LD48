@@ -8,7 +8,10 @@ public class Particles : MonoBehaviour
 
 	public ParticleSystem blood,
 		fire,
-		water;
+		water,
+		rock,
+		spirit
+		;
 
 
 
@@ -17,6 +20,8 @@ public class Particles : MonoBehaviour
 		BLOOD,
 		FIRE,
 		WATER,
+		ROCK,
+		SPIRIT,
 	}
 
 	public void Awake()
@@ -31,6 +36,8 @@ public class Particles : MonoBehaviour
 			case Type.BLOOD: return blood;
 			case Type.FIRE: return fire;
 			case Type.WATER: return water;
+			case Type.ROCK: return rock;
+			case Type.SPIRIT: return spirit;
 		}
 		return null;
 	}
@@ -44,6 +51,7 @@ public class Particles : MonoBehaviour
 			velocity = motion,
 			startColor = colour,
 			startLifetime = duration,
+			startSize = size,
 		};
 		particles.Emit(par, count);
 	}
