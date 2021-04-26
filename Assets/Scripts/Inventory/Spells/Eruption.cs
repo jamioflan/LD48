@@ -6,6 +6,13 @@ public class Eruption : Spell
 {
 	float eruptionRadius = 1.0f;
 
+	protected override void Start()
+	{
+		base.Start();
+		cooldownTimer = 2.5f;
+
+	}
+
 	public override void CastSpell(Vector3 target)
 	{
 		if (countDown <= 0.0f && (isPlayerCaster || isEnemyCaster))
@@ -27,6 +34,11 @@ public class Eruption : Spell
 						Debug.Log("You disturbed " + victim.name + " with damage " + spellDamage);
 						enemy.SufferDamage(spellDamage, DamageType.Conjuring, DamageElement.Earth, transform.position);
 					}
+				}
+
+				for (int i = 0; i < 100; i++)
+				{
+					Particles.inst.Emit((owner.transform.position + (target - owner.transform.position) * i / 100f) + Vector3.up * 0.5f, Vector3.up * 2.0f + Random.insideUnitSphere * 4.0f, 0.3f, Random.Range(0.3f, 0.5f), Color.white, Particles.Type.ROCK, 1);
 				}
 
 				countDown = cooldownTimer;

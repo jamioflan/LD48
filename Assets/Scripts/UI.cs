@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour
@@ -52,6 +53,10 @@ public class UI : MonoBehaviour
 
 	public Text shopTutorial;
 	public RectTransform nextLevel;
+
+	// Game Over screen
+	public GameObject gameOverScreen;
+	public Text lastLevelText;
 
 	// Character Select Screen
 	public GameObject characterSelectScreen;
@@ -238,6 +243,19 @@ public class UI : MonoBehaviour
 	}
 	// 
 
+	public void GameOver(LevelData lastLevel)
+	{
+		gameOverScreen.SetActive(true);
+		lastLevelText.text = "You died at " + lastLevel.levelName;
+		LevelGenerator.inst.DeleteLevel();
+		Game.inst.state = Game.State.DEAD;
+	}
+
+	public void RestartGame()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
 	public void SetLevelNameText(string message)
 	{
 		levelNameText.text = message;
@@ -356,6 +374,7 @@ public class UI : MonoBehaviour
 			if (weapon == null)
 			{
 				weaponInfos[i].SetItem(null);
+				weaponInfos[i].SetSelected(Player.inst.inventory.selectedWeaponSlot == i);
 			}
 			else
 			{

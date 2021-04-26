@@ -224,6 +224,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5675617294367865442, guid: fc33b95082aae4d47a9e6a7c11970c07,
+        type: 3}
+      propertyPath: defaultSpells.Array.data[1]
+      value: 
+      objectReference: {fileID: 1395997172791158266, guid: 85d1b0070fc098c419a1f27de26ad7ec,
+        type: 3}
     - target: {fileID: 7223909526510828406, guid: fc33b95082aae4d47a9e6a7c11970c07,
         type: 3}
       propertyPath: m_Name
@@ -421,75 +427,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1103431322969076872
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1591018289534639652, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_Name
-      value: WoodenSword
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.749
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.276
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5305639001693397887, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8cba9f9b6a4e77b4f9c59cfe4f240196, type: 3}
 --- !u!1001 &4318298348127923943
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -586,7 +523,7 @@ PrefabInstance:
     - target: {fileID: 5432666447913576170, guid: 5c712da2f9392884e90e461175da7b8f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5432666447913576170, guid: 5c712da2f9392884e90e461175da7b8f,
         type: 3}
@@ -650,7 +587,7 @@ PrefabInstance:
     - target: {fileID: 6129522754893168618, guid: 0f560c7074f6bc84fb96cadaf0d148bc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6129522754893168618, guid: 0f560c7074f6bc84fb96cadaf0d148bc,
         type: 3}
@@ -721,135 +658,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LootGenerator
       objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[0]
-      value: '{1} King {0} the Wise'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[1]
-      value: Lord {0} of the {1}
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[2]
-      value: Queen {0} of the {1}
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[3]
-      value: The {1} {0}
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[4]
-      value: '{1} Demon, the {0}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[5]
-      value: '{0}-Boy, Mutant of the {1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[6]
-      value: '{0}-Girl, Mutant of the {1}'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[7]
-      value: '{1} {0}us Maximus'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[8]
-      value: Arch{0} of the {1} Realm
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[9]
-      value: '{0} Demon the {1} Terror'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[10]
-      value: Lady {0}, Keeper of the {1}
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[11]
-      value: The Extraordinary {0}, {1} Fiend
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: bossNameTemplates.Array.data[12]
-      value: Count von {0} of {1} Manor
-      objectReference: {fileID: 0}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 8624415594358475045, guid: f539eff5143b6cf408c4b03598d84342,
-        type: 3}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 6069697004330413950, guid: 47103767e9cabd84196f5454f2fa5b5d,
-        type: 3}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 3414797681034629523, guid: b6aeb2930296c394b8869195e68aa18e,
-        type: 3}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 8624415594358475045, guid: b6df830b4d59edd4fa6f6a01f55095e5,
-        type: 3}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 8624415594358475045, guid: b360436c3a30f0444a43f89d604b10cf,
-        type: 3}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.data[6]
-      value: 
-      objectReference: {fileID: 8624415594358475045, guid: f0d8dde522c2ab34d8ae540aa577dd6f,
-        type: 3}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.data[7]
-      value: 
-      objectReference: {fileID: 8624415594358475045, guid: 1380a83028cdf29438982bdb83576674,
-        type: 3}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.data[8]
-      value: 
-      objectReference: {fileID: 4811454996568460130, guid: 8e442b3947bdc8b48a7965c765295784,
-        type: 3}
-    - target: {fileID: 7945250518480375238, guid: 5e5eec403a022054b8fc0c17f34e9b58,
-        type: 3}
-      propertyPath: scaleableLootPrefabs.Array.data[9]
-      value: 
-      objectReference: {fileID: 739382065838794707, guid: 330f302e4cb7daa46a3d5ec3ae71739f,
-        type: 3}
     - target: {fileID: 7945250518480375239, guid: 5e5eec403a022054b8fc0c17f34e9b58,
         type: 3}
       propertyPath: m_RootOrder

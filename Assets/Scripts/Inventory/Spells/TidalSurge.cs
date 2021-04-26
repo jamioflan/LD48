@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class TidalSurge : Spell
 {
+	protected override void Start()
+	{
+		base.Start();
+		cooldownTimer = 1.5f;
+	}
+
 	public override void CastSpell(Vector3 target)
 	{
 		if (countDown <= 0.0f && (isPlayerCaster || isEnemyCaster))

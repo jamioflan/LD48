@@ -40,7 +40,7 @@ public class PlayerAttacks : MonoBehaviour
     {
 		if (Game.inst.state == Game.State.IN_LEVEL)
 		{
-			equippedWeapon = inventory.GetWeaponInSlot(0);
+			equippedWeapon = inventory.GetWeaponInSlot(inventory.selectedWeaponSlot);
 
 			if (equippedWeapon != null)
 			{

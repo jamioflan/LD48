@@ -50,11 +50,18 @@ public class Player : Creature
 		GetComponentInChildren<MeshRenderer>().sharedMaterial = skins[(int)c];
 	}
 
+	public override void Die()
+	{
+		base.Die();
+
+		UI.inst.GameOver(LevelGenerator.inst.currentLevel);
+	}
+
 	protected override void Update()
     {
 		base.Update();
 
-		foreach(Collider coll in Physics.OverlapBox(transform.position, Vector3.one))
+		foreach(Collider coll in Physics.OverlapBox(transform.position, Vector3.one * 0.25f))
 		{
 			Pickup pickup = coll.GetComponent<Pickup>();
 			if (pickup != null)

@@ -10,6 +10,7 @@ public class Game : MonoBehaviour
 		CHOOSE_CHARACTER,
 		IN_LEVEL,
 		IN_SHOP,
+		DEAD,
 	}
 
 	public static Game inst;
@@ -105,6 +106,10 @@ public class Game : MonoBehaviour
 			case State.IN_SHOP:
 			{
 
+				break;
+			}
+			case State.DEAD:
+			{
 				break;
 			}
 		}

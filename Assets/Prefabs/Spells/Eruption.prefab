@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4531306878029566462}
-  - component: {fileID: -6037387073327131318}
+  - component: {fileID: 1187191754188952428}
   m_Layer: 0
-  m_Name: Fireball
+  m_Name: Eruption
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6037387073327131318
+--- !u!114 &1187191754188952428
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,16 +40,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4710136067164540692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9595b8bfe1f3e847999b56b89c016cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 73c46c6362eaa4c4b97cafa7b7f43dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  texture: {fileID: 2800000, guid: 8aa0a75ca358487408154cd31ef5ba94, type: 3}
+  texture: {fileID: 2800000, guid: 9128ca57e1bf3bd418bed47c051f7956, type: 3}
   level: 0
-  cost: 10
+  cost: 8
   sfx: {fileID: 0}
-  displayName: Fireball
-  spellDamage: 3
-  spellDamagePerLevel: 1
-  description: Deals {0} damage to a small area
-  radius: 1
+  displayName: Eruption
+  spellDamage: 4
+  spellDamagePerLevel: 2
+  description: Deals {0} damage to an area

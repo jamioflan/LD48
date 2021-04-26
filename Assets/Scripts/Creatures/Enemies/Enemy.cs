@@ -83,6 +83,8 @@ public class Enemy : Creature
 
 	public override void Die()
 	{
+		base.Die();
+
 		float coinRoll = Random.Range(treasure, treasure * (1 + maxTreasurePerLevel * LevelGenerator.inst.currentLevel.levelNumber));
 		Game.inst.DropPickup(pickupType, transform.position, Mathf.RoundToInt(coinRoll));
 

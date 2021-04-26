@@ -117,10 +117,33 @@ public class PlayerInventory : MonoBehaviour
 		}
 	}
 
+	private float weaponSwitchDelay = 0.0f;
+
     // Update is called once per frame
     void Update()
     {
-        for(int i = 0; i < weapons.NumSlots; i++)
+		weaponSwitchDelay -= Time.deltaTime;
+		if (weaponSwitchDelay <= 0.0f)
+		{
+			if (Input.mouseScrollDelta.y > 0f)
+			{
+				CycleNextWeapon();
+				weaponSwitchDelay = 0.25f;
+			}
+			if (Input.mouseScrollDelta.y < 0f)
+			{
+				CyclePreviousWeapon();
+				weaponSwitchDelay = 0.25f;
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.Alpha1))
+			selectedWeaponSlot = 0;
+		if (Input.GetKeyDown(KeyCode.Alpha2))
+			selectedWeaponSlot = 1;
+
+
+		for (int i = 0; i < weapons.NumSlots; i++)
 		{
 			Weapon weapon = weapons.GetInSlot(i);
 			if (weapon != null)

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5305639001693397887}
-  - component: {fileID: 8624415594358475045}
   - component: {fileID: -453119235575497573}
+  - component: {fileID: -2579827833186025507}
   m_Layer: 0
   m_Name: Dagger_Gold
   m_TagString: Untagged
@@ -33,27 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8624415594358475045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1591018289534639652}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1057a16459b8d9b44a7be9dc8a856f6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  owner: {fileID: 0}
-  texture: {fileID: 2800000, guid: f4885b24ccab67e4ea24cbdef666cffa, type: 3}
-  level: 0
-  cost: 30
-  sfx: {fileID: 0}
-  displayName: Gold Dagger
-  dElement: 4
-  damageModifier: 3
-  damageModifierPerLevel: 1.5
 --- !u!82 &-453119235575497573
 AudioSource:
   m_ObjectHideFlags: 0
@@ -151,6 +130,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2579827833186025507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1591018289534639652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac6c402fd1413d04787453759e61a1bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  texture: {fileID: 2800000, guid: f4885b24ccab67e4ea24cbdef666cffa, type: 3}
+  level: 0
+  cost: 30
+  sfx: {fileID: 0}
+  displayName: Golden Gouger
+  dElement: 4
+  damageModifier: 3
+  damageModifierPerLevel: 2
 --- !u!1001 &2819429115952156378
 PrefabInstance:
   m_ObjectHideFlags: 0

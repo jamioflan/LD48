@@ -21,6 +21,11 @@ public class Shield : Spell
 			owner.tempHealth = 0.0f;
 		}
 	}
+	protected override void Start()
+	{
+		base.Start();
+		cooldownTimer = 2.0f;
+	}
 
 	public override void CastSpell(Vector3 target)
 	{

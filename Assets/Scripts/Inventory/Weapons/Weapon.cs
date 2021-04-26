@@ -21,7 +21,7 @@ public abstract class Weapon : InventoryItem
 	public void Infuse(DamageElement element)
 	{
 		dElement = element;
-		damageModifier *= 0.75f;
+		//damageModifier *= 0.75f;
 	}
 
 	public override string GetDisplayName()

@@ -41,6 +41,9 @@ public class LootGenerator : MonoBehaviour
 				weapon.Infuse((DamageElement)Random.Range(0, (int)DamageElement.Spirit + 1));
 				instance.cost = Mathf.CeilToInt(instance.cost * 1.25f);
 			}
+
+			if (instance.cost <= 0)
+				instance.cost = 1;
 			
 			instance.gameObject.SetActive(false);
 			result[i] = instance;
